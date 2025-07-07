@@ -16,6 +16,10 @@ class RoutePages {
   // 列表
   static List<GetPage> list = [
     GetPage(
+      name: RouteNames.stylesStylesIndex,
+      page: () => const StylesIndexPage(),
+    ),
+    GetPage(
       name: RouteNames.systemSplash,
       page: () => const SplashPage(),
     ),
