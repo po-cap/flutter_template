@@ -1,0 +1,1 @@
+export 'system/splash/index.dart';

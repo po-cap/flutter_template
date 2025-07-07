@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:template/common/index.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,6 +32,12 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
+
+      // 路由 
+      initialRoute: RouteNames.systemSplash,
+      getPages: RoutePages.list,
+    
+
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
