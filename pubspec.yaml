@@ -37,6 +37,7 @@ dependencies:
   
   get: ^4.7.2                # 狀態管理
   package_info_plus: ^8.3.0  # 獲取包信息
+  shared_preferences: ^2.5.3 # 本地存儲
 
 dev_dependencies:
   flutter_test:
