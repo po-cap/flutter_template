@@ -40,6 +40,10 @@ class RoutePages {
       page: () => const TextPage(),
     ),
     GetPage(
+      name: RouteNames.stylesTextForm,
+      page: () => const TextFormPage(),
+    ),
+    GetPage(
       name: RouteNames.systemSplash,
       page: () => const SplashPage(),
     ),
