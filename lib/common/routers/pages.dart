@@ -28,6 +28,10 @@ class RoutePages {
       page: () => const ImagePage(),
     ),
     GetPage(
+      name: RouteNames.stylesInputs,
+      page: () => const InputsPage(),
+    ),
+    GetPage(
       name: RouteNames.stylesStylesIndex,
       page: () => const StylesIndexPage(),
     ),
