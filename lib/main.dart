@@ -1,5 +1,6 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:template/common/index.dart';
 
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
         darkTheme: darkTheme,
 
         // 路由
-        initialRoute: RouteNames.systemSplash,
+        initialRoute: RouteNames.stylesStylesIndex,
         getPages: RoutePages.list,   
         navigatorObservers: [RoutePages.observers], 
       
@@ -46,7 +47,23 @@ class MyApp extends StatelessWidget {
         fallbackLocale: Translation.fallbackLocale, // 默认语言种类
       
       
-        home: const MyHomePage(title: 'Flutter Demo Home Page'),
+        // builder
+        builder: (context, widget) {
+            
+          // EasyLoading 初始化
+          widget = EasyLoading.init()(context, widget);
+          
+          // 不随系统字体缩放比例
+          return MediaQuery(
+            data: MediaQuery.of(context)
+                .copyWith(textScaler: const TextScaler.linear(1.0)),
+            child: widget,
+          );
+        },
+
+        // 隐藏 debug 标志
+        debugShowCheckedModeBanner: false,
+        
       ),
     );
   }
