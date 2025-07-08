@@ -16,6 +16,19 @@ class StylesIndexPage extends GetView<StylesIndexController> {
           "语言 : ${ConfigService.to.locale.toLanguageTag()}",
         ),
       ),
+      // 主题
+      ListTile(
+        onTap: () => controller.onThemeSelected("light"),
+        title: Text("亮色 : ${ConfigService.to.themeMode}"),
+      ),
+      ListTile(
+        onTap: () => controller.onThemeSelected("dark"),
+        title: Text("暗色 : ${ConfigService.to.themeMode}"),
+      ),
+      ListTile(
+        onTap: () => controller.onThemeSelected("system"),
+        title: Text("系统 : ${ConfigService.to.themeMode}"),
+      ),
     ]);
   }
 
