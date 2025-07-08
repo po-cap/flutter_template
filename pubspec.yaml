@@ -43,6 +43,7 @@ dependencies:
   shared_preferences: ^2.5.3 # 本地存儲
   dio: ^5.8.0+1              # 網路請求
   adaptive_theme: ^3.7.0     # 應用主題
+  ducafe_ui_core: ^1.0.6     # UI元件(貓哥組件庫)
 
 dev_dependencies:
   flutter_test:
