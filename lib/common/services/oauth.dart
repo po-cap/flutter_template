@@ -37,8 +37,6 @@ class OAuthService extends GetxService {
   // 初始化方法（替代構造函數）
   void initialize({
     required String redirectUri,
-    required String authorizationEndpoint,
-    required String tokenEndpoint,
     List<String>? scopes,
     Function(Map<String, dynamic>)? onTokenReceived,
     Function(String)? onError,
@@ -209,7 +207,6 @@ void handleIncomingLinks() {
       throw Exception('Refresh token error: $e');
     }
   }
-
 
   // 清理資源
   void dispose() {

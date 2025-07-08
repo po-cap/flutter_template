@@ -11,4 +11,10 @@ build-ios:
 	flutter build ios --dart-define=CLIENT_ID=$(CLIENT_ID) --dart-define=CLIENT_SECRET=$(CLIENT_SECRET)
 	open ios/Runner.xcworkspace
 
+splash-install:
+	dart run flutter_native_splash:create
+
+splash-remove:
+	dart run flutter_native_splash:remove
+
 .PHONY: run build-android build-ios
