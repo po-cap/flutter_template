@@ -1,5 +1,6 @@
 
 class RouteNames {
+  static const stylesButtons = '/styles_buttons';
   static const stylesIcon = '/styles_icon';
   static const stylesImage = '/styles_image';
   static const stylesStylesIndex = '/styles_styles_index';

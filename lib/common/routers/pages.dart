@@ -16,6 +16,10 @@ class RoutePages {
   // 列表
   static List<GetPage> list = [    
     GetPage(
+      name: RouteNames.stylesButtons,
+      page: () => const ButtonsPage(),
+    ),
+    GetPage(
       name: RouteNames.stylesIcon,
       page: () => const IconPage(),
     ),  
