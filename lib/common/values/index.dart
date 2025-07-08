@@ -1,4 +1,4 @@
-library values;
+library;
 
 export 'constants.dart';
 export 'images.dart';

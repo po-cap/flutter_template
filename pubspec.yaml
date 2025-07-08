@@ -38,12 +38,14 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
   
-  get: ^4.7.2                # 狀態管理
-  package_info_plus: ^8.3.0  # 獲取包信息
-  shared_preferences: ^2.5.3 # 本地存儲
-  dio: ^5.8.0+1              # 網路請求
-  adaptive_theme: ^3.7.0     # 應用主題
-  ducafe_ui_core: ^1.0.6     # UI元件(貓哥組件庫)
+  get: ^4.7.2                  # 狀態管理
+  package_info_plus: ^8.3.0    # 獲取包信息
+  shared_preferences: ^2.5.3   # 本地存儲
+  dio: ^5.8.0+1                # 網路請求
+  adaptive_theme: ^3.7.0       # 應用主題
+  ducafe_ui_core: ^1.0.6       # UI元件(貓哥組件庫)
+  cached_network_image: ^3.4.1 # 圖片緩存
+  flutter_svg: ^2.2.0          # SVG
 
 dev_dependencies:
   flutter_test:

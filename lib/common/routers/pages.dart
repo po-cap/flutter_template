@@ -14,7 +14,11 @@ class RoutePages {
   static RouteObservers observers = RouteObservers();
 
   // 列表
-  static List<GetPage> list = [
+  static List<GetPage> list = [      
+    GetPage(
+      name: RouteNames.stylesImage,
+      page: () => const ImagePage(),
+    ),
     GetPage(
       name: RouteNames.stylesStylesIndex,
       page: () => const StylesIndexPage(),
