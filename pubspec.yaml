@@ -46,6 +46,10 @@ dependencies:
   ducafe_ui_core: ^1.0.6       # UI元件(貓哥組件庫)
   cached_network_image: ^3.4.1 # 圖片緩存
   flutter_svg: ^2.2.0          # SVG
+  url_launcher: ^6.3.1         # 開啟網址
+  crypto: ^3.0.6               # 加密
+  http: ^1.4.0                 # 網路請求(dio是被包裝過的)
+  app_links: ^6.4.0            # 應用連結(Deep links & Universal Links)
 
 dev_dependencies:
   flutter_test:

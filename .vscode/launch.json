@@ -8,7 +8,11 @@
         {
             "name": "template",
             "request": "launch",
-            "type": "dart"
+            "type": "dart",
+            "args": [
+                "--dart-define=CLIENT_ID=7U6bcdfd9dd2d3c0ba9bd682274d831eef",
+                "--dart-define=CLIENT_SECRET=7f859ffaba9cee6c3815e867a89b6d35"
+            ]
         },
         {
             "name": "template (profile mode)",
