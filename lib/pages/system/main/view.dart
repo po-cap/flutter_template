@@ -51,7 +51,9 @@ class _MainViewGetX extends GetView<MainController> {
         extendBody: true,
         resizeToAvoidBottomInset: false,
         floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            Get.toNamed(RouteNames.postPostItem);
+          },
           child: Icon(Icons.add),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

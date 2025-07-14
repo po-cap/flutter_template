@@ -2,7 +2,6 @@ import 'package:ducafe_ui_core/ducafe_ui_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:template/common/index.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 
 import 'index.dart';
 

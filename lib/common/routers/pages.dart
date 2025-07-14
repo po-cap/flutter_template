@@ -34,6 +34,10 @@ class RoutePages {
         page: () => const MyIndexPage(),
       ),
       GetPage(
+        name: RouteNames.postPostItem,
+        page: () => const PostItemPage(),
+      ),
+      GetPage(
         name: RouteNames.stylesButtons,
         page: () => const ButtonsPage(),
       ),

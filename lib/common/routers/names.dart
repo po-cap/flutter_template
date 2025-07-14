@@ -4,6 +4,7 @@ class RouteNames {
   static const goodsHome = '/goods_home';
   static const msgMsgIndex = '/msg_msg_index';
   static const myMyIndex = '/my_my_index';
+  static const postPostItem = '/post_post_item';
   static const stylesButtons = '/styles_buttons';
   static const stylesIcon = '/styles_icon';
   static const stylesImage = '/styles_image';
