@@ -66,6 +66,10 @@ class RoutePages {
         page: () => const LoginPage(),
       ),
       GetPage(
+        name: RouteNames.systemLoginWithLine,
+        page: () => const LoginWithLinePage(),
+      ),
+      GetPage(
         name: RouteNames.systemMain,
         page: () => const MainPage(),
         binding: MainBinding()

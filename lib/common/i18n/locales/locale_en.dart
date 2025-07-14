@@ -28,6 +28,8 @@ Map<String, String> localeEn = {
   LocaleKeys.loginBackDesc: 'Sign in to continue',
   LocaleKeys.loginBackFieldEmail: 'Email',
   LocaleKeys.loginBackFieldPassword: 'Password',
+  LocaleKeys.loginFailure: 'Login failure',
+  LocaleKeys.loginWithLine: 'Sign in with Line',
 
   // APP 导航
   LocaleKeys.tabBarHome: 'Home',

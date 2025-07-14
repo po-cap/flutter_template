@@ -36,14 +36,13 @@ class LoginPage extends GetView<LoginController> {
 
         TextWidget.label(
           LocaleKeys.loginOrText.tr
-        ).paddingBottom(30),
+        ).paddingBottom(15),
 
-        ButtonWidget.outline(
-          "Line",
-          icon: IconWidget.svg(AssetsSvgs.facebookSvg),
+        ButtonWidget.ghost(
+          LocaleKeys.loginWithLine.tr,
+          icon: IconWidget.svg(AssetsSvgs.lineSvg),
           onTap: controller.onSignInWithLine,
         ).width(double.infinity),
-
 
       ].toColumn()
     ).paddingAll(AppSpace.card);
@@ -52,6 +51,13 @@ class LoginPage extends GetView<LoginController> {
   Widget _buildSigninPage(BuildContext context) {
     return SingleChildScrollView(
       child: <Widget> [
+
+       // 头部标题
+        PageTitleWidget(
+          title: LocaleKeys.loginBackTitle.tr,
+          desc: LocaleKeys.loginBackDesc.tr,
+        ).paddingTop(50),
+
         _buildForm(context),
       ]
       .toColumn()
@@ -61,11 +67,7 @@ class LoginPage extends GetView<LoginController> {
 
   // 主视图
   Widget _buildView(BuildContext context) {
-    return controller.webViewController == null ?
-      _buildSigninPage(context) :
-      WebViewWidget(
-        controller: controller.webViewController!,
-      );
+    return _buildSigninPage(context);
   }
 
   @override

@@ -12,6 +12,7 @@ class RouteNames {
   static const stylesText = '/styles_text';
   static const stylesTextForm = '/styles_text_form';
   static const systemLogin = '/system_login';
+  static const systemLoginWithLine = '/system_login_with_line';
   static const systemMain = '/system_main';
   static const systemSplash = '/system_splash';
   static const systemWelcome = '/system_welcome';

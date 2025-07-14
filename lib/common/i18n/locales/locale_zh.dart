@@ -28,6 +28,8 @@ Map<String, String> localeZh = {
   LocaleKeys.loginBackDesc: '登入後繼續',
   LocaleKeys.loginBackFieldEmail: '郵箱',
   LocaleKeys.loginBackFieldPassword: '密碼',
+  LocaleKeys.loginFailure: '登入失敗',
+  LocaleKeys.loginWithLine: 'Line 登入',
 
   // APP 导航
   LocaleKeys.tabBarHome: '首页',

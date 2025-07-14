@@ -35,5 +35,6 @@ class AssetsSvgs {
   static const pGiftSvg = 'assets/svgs/p-gift.svg';
   static const pHomeSvg = 'assets/svgs/p-home.svg';
   static const pNotificationsSvg = 'assets/svgs/p-notifications.svg';
-  static const pTranslateSvg = 'assets/svgs/p-translate.svg';
+  static const pTranslateSvg = 'assets/svgs/p-translate.svg';  
+  static const lineSvg = 'assets/svgs/line.svg';
 }
