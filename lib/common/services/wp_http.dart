@@ -26,6 +26,13 @@ class WPHttpService extends GetxService {
     );
     _dio = Dio(options);
 
+    // 日誌
+    _dio.interceptors.add(LogInterceptor(
+      request: true,
+      requestHeader: true,
+      responseHeader: true, 
+    ));
+
     // 拦截器
     _dio.interceptors.add(RequestInterceptors());
   }
@@ -103,10 +110,10 @@ class RequestInterceptors extends Interceptor {
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     // super.onRequest(options, handler);
 
-    // // http header 头加入 Authorization
-    // if (UserService.to.hasToken) {
-    //   options.headers['Authorization'] = 'Bearer ${UserService.to.token}';
-    // }
+    // http header 头加入 Authorization
+    if (UserService.to.hasToken) {
+      options.headers['Authorization'] = 'Bearer ${UserService.to.accessToken}';
+    }
 
     return handler.next(options);
     // 如果你想完成请求并返回一些自定义数据，你可以resolve一个Response对象 `handler.resolve(response)`。
@@ -135,24 +142,56 @@ class RequestInterceptors extends Interceptor {
 
   @override
   Future<void> onError(
-      DioException err, ErrorInterceptorHandler handler) async {
-    final exception = HttpException(err.message ?? "error message");
-    switch (err.type) {
-      case DioExceptionType.badResponse: // 服务端自定义错误体处理
-        break;
-      case DioExceptionType.unknown:
-        break;
-      case DioExceptionType.cancel:
-        break;
-      case DioExceptionType.connectionTimeout:
-        break;
-      default:
-        break;
-    }
-    DioException errNext = err.copyWith(
-      error: exception,
-    );
-    handler.next(errNext);
+    DioException err, 
+    ErrorInterceptorHandler handler
+  ) async {
+      
+      final exception = HttpException(err.message ?? "error message");
+
+      switch (err.type) {
+        case DioExceptionType.badResponse:
+          {
+            final response = err.response;
+            final errorMessage = ErrorMessageModel.fromJson(response?.data);
+            switch (errorMessage.status) {
+              // 401 未登录
+              case 401:
+                // 注销 并跳转到登录页面
+                _errorNoAuthLogout();
+                break;
+              case 404:
+                break;
+              case 500:
+                break;
+              case 502:
+                break;
+              default:
+                break;
+            }
+            Loading.error(errorMessage.title);
+          }
+          break;
+        case DioExceptionType.unknown:
+          break;
+        case DioExceptionType.cancel:
+          break;
+        case DioExceptionType.connectionTimeout:
+          break;
+        default:
+          break;
+      }
+      
+      DioException errNext = err.copyWith(
+        error: exception,
+      );
+    
+      handler.next(errNext);
+  }
+
+  // 退出并重新登录
+  Future<void> _errorNoAuthLogout() async {
+    await UserService.to.logout();
+    Get.toNamed(RouteNames.systemLogin);
   }
 }
 

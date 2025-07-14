@@ -1,4 +1,4 @@
-library common;
+library;
 
 export 'api/index.dart';
 export 'components/index.dart';

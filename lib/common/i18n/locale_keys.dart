@@ -14,4 +14,16 @@ class LocaleKeys {
 
   // 样式
   static const stylesTitle = 'styles_title';
+
+  // 登录、注册 - 通用
+  static const loginForgotPassword = 'login_forgot_password';
+  static const loginSignIn = 'login_sign_in';
+  static const loginOrText = 'login_or_text';
+  static const loginSignUp = 'login_sign_up';
+
+  // 登录 - back login
+  static const loginBackTitle = 'login_back_title';
+  static const loginBackDesc = 'login_back_desc';
+  static const loginBackFieldEmail = 'login_back_field_email';
+  static const loginBackFieldPassword = 'login_back_field_password';
 }

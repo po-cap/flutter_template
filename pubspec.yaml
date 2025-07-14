@@ -51,6 +51,10 @@ dependencies:
   http: ^1.4.0                 # 網路請求(dio是被包裝過的)
   app_links: ^6.4.0            # 應用連結(Deep links & Universal Links)
   flutter_easyloading: ^3.0.5  # 載入進度條
+  flutter_web_auth_2: ^4.1.0
+  dio_cookie_manager: ^3.2.0
+  cookie_jar: ^4.0.8
+  webview_flutter: ^4.13.0
 
 dev_dependencies:
   flutter_test:

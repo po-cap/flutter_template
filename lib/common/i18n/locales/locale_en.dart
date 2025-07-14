@@ -16,4 +16,16 @@ Map<String, String> localeEn = {
 
   // 样式
   LocaleKeys.stylesTitle: 'Sytles && Function',
+
+  // 登录、注册 - 通用
+  LocaleKeys.loginForgotPassword: 'Forgot Password?',
+  LocaleKeys.loginSignIn: 'Sign In',
+  LocaleKeys.loginSignUp: 'Sign Up',
+  LocaleKeys.loginOrText: '- OR -',
+
+  // 登录 - back login
+  LocaleKeys.loginBackTitle: 'Welcome login!',
+  LocaleKeys.loginBackDesc: 'Sign in to continue',
+  LocaleKeys.loginBackFieldEmail: 'Email',
+  LocaleKeys.loginBackFieldPassword: 'Password',
 };
