@@ -35,5 +35,15 @@ Map<String, String> localeEn = {
   LocaleKeys.tabBarAdd: 'Add',
   LocaleKeys.tabBarMessage: 'Message',
   LocaleKeys.tabBarProfile: 'Profile',
-
+  
+  // welcome 欢迎
+  LocaleKeys.welcomeOneTitle: 'Choose Your Desire Product',
+  LocaleKeys.welcomeOneDesc: 'Contrary to popular belief, Lorem Ipsum is not simply random text',
+  LocaleKeys.welcomeTwoTitle: 'Complete your shopping',
+  LocaleKeys.welcomeTwoDesc: 'Contrary to popular belief, Lorem Ipsum is not simply random text',
+  LocaleKeys.welcomeThreeTitle: 'Get product at your door',
+  LocaleKeys.welcomeThreeDesc: 'Contrary to popular belief, Lorem Ipsum is not simply random text',
+  LocaleKeys.welcomeSkip: 'Skip',
+  LocaleKeys.welcomeNext: 'Next',
+  LocaleKeys.welcomeStart: 'Get Started',
 };

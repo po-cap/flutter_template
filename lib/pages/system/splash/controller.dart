@@ -4,9 +4,13 @@ import 'package:template/common/index.dart';
 class SplashController extends GetxController {
   SplashController();
 
-  _initData() {
-    update(["splash"]);
+  _jumpToPage() {
+    // 欢迎页
+    Future.delayed(const Duration(seconds: 1), () {
+      Get.offAllNamed(RouteNames.systemWelcome);
+    });
   }
+
 
   void onTap() {}
 
@@ -22,11 +26,9 @@ class SplashController extends GetxController {
   @override
   void onReady() {
     super.onReady();
-    _initData();
+    // _initData(); // 初始数据
+    _jumpToPage(); // 跳转界面
   }
 
-  // @override
-  // void onClose() {
-  //   super.onClose();
-  // }
+
 }
