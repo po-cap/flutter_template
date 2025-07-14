@@ -1,5 +1,21 @@
 
       GetPage(
+        name: RouteNames.cartCartIndex,
+        page: () => const CartIndexPage(),
+      ),
+      GetPage(
+        name: RouteNames.goodsHome,
+        page: () => const HomePage(),
+      ),
+      GetPage(
+        name: RouteNames.msgMsgIndex,
+        page: () => const MsgIndexPage(),
+      ),
+      GetPage(
+        name: RouteNames.myMyIndex,
+        page: () => const MyIndexPage(),
+      ),
+      GetPage(
         name: RouteNames.stylesButtons,
         page: () => const ButtonsPage(),
       ),

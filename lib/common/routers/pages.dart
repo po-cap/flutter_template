@@ -2,6 +2,7 @@
 import 'package:get/get.dart';
 import 'package:template/common/index.dart';
 import 'package:template/pages/index.dart';
+import 'package:template/pages/system/main/binding.dart';
 
 import 'observers.dart';
 
@@ -16,6 +17,22 @@ class RoutePages {
   // 列表
   static List<GetPage> list = [    
 
+      GetPage(
+        name: RouteNames.cartCartIndex,
+        page: () => const CartIndexPage(),
+      ),
+      GetPage(
+        name: RouteNames.goodsHome,
+        page: () => const HomePage(),
+      ),
+      GetPage(
+        name: RouteNames.msgMsgIndex,
+        page: () => const MsgIndexPage(),
+      ),
+      GetPage(
+        name: RouteNames.myMyIndex,
+        page: () => const MyIndexPage(),
+      ),
       GetPage(
         name: RouteNames.stylesButtons,
         page: () => const ButtonsPage(),
@@ -51,6 +68,7 @@ class RoutePages {
       GetPage(
         name: RouteNames.systemMain,
         page: () => const MainPage(),
+        binding: MainBinding()
       ),
       GetPage(
         name: RouteNames.systemSplash,

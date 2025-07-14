@@ -1,5 +1,9 @@
 library;
 
+export 'cart/cart_index/index.dart';
+export 'goods/home/index.dart';
+export 'msg/msg_index/index.dart';
+export 'my/my_index/index.dart';
 export 'styles/buttons/index.dart';
 export 'styles/icon/index.dart';
 export 'styles/image/index.dart';

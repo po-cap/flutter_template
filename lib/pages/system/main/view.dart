@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:template/common/index.dart';
+import 'package:template/pages/index.dart';
 
 
 import 'index.dart';
@@ -91,11 +92,11 @@ class _MainViewGetX extends GetView<MainController> {
           onPageChanged: controller.onIndexChanged,
           children: const [
             // 加入空页面占位
-            Text("1"),
-            Text("2"),
-            Text("3"),
-            Text("4"),
-            Text("5"),
+            HomePage(),
+            CartIndexPage(),
+            Text("Add Items Page"),
+            MsgIndexPage(),
+            MyIndexPage(),
           ],
         ),
       ),
@@ -106,7 +107,6 @@ class _MainViewGetX extends GetView<MainController> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<MainController>(
-      init: MainController(),
       id: "main",
       builder: (_) {
         return Scaffold(
