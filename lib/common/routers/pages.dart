@@ -49,6 +49,10 @@ class RoutePages {
         page: () => const LoginPage(),
       ),
       GetPage(
+        name: RouteNames.systemMain,
+        page: () => const MainPage(),
+      ),
+      GetPage(
         name: RouteNames.systemSplash,
         page: () => const SplashPage(),
       ),

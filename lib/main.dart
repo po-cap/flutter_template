@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
         darkTheme: darkTheme,
 
         // 路由
-        initialRoute: RouteNames.systemLogin,
+        initialRoute: RouteNames.systemMain,
         getPages: RoutePages.list,   
         navigatorObservers: [RoutePages.observers], 
       

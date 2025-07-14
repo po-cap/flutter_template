@@ -29,5 +29,12 @@ Map<String, String> localeZh = {
   LocaleKeys.loginBackFieldEmail: '郵箱',
   LocaleKeys.loginBackFieldPassword: '密碼',
 
+  // APP 导航
+  LocaleKeys.tabBarHome: '首页',
+  LocaleKeys.tabBarCart: '购物车',
+  LocaleKeys.tabBarAdd: '新稱',
+  LocaleKeys.tabBarMessage: '消息',
+  LocaleKeys.tabBarProfile: '我的',
+
 };
 
