@@ -65,6 +65,9 @@ class ConfigService extends GetxService {
         AdaptiveTheme.of(Get.context!).setSystem();
         break;
     }
+
+    // 设置系统样式
+    AppTheme.setSystemStyle();
   }
 
   // 更改语言

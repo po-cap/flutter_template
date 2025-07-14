@@ -5,7 +5,6 @@ import 'package:template/common/index.dart';
 import 'package:template/pages/index.dart';
 
 
-import 'index.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -51,6 +50,11 @@ class _MainViewGetX extends GetView<MainController> {
       child: Scaffold(
         extendBody: true,
         resizeToAvoidBottomInset: false,
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          child: Icon(Icons.add),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         // 导航栏
         bottomNavigationBar: GetBuilder<MainController>(
           id: 'navigation',
@@ -66,10 +70,6 @@ class _MainViewGetX extends GetView<MainController> {
                   label: LocaleKeys.tabBarCart.tr,
                   icon: AssetsSvgs.navCartSvg,
                   count: 3,
-                ),
-                NavigationItemModel(
-                  label: LocaleKeys.tabBarAdd.tr,
-                  icon: AssetsSvgs.iAddSvg,
                 ),
                 NavigationItemModel(
                   label: LocaleKeys.tabBarMessage.tr,
@@ -94,7 +94,6 @@ class _MainViewGetX extends GetView<MainController> {
             // 加入空页面占位
             HomePage(),
             CartIndexPage(),
-            Text("Add Items Page"),
             MsgIndexPage(),
             MyIndexPage(),
           ],
@@ -109,13 +108,8 @@ class _MainViewGetX extends GetView<MainController> {
     return GetBuilder<MainController>(
       id: "main",
       builder: (_) {
-        return Scaffold(
-          appBar: AppBar(title: const Text("main")),
-          body: SafeArea(
-            child: _buildView(context),
-          ),
-        );
-      },
+        return _buildView(context);
+      }
     );
   }
 }

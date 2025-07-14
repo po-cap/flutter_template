@@ -33,7 +33,16 @@ class BuildNavigation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var ws = <Widget>[];
+
     for (var i = 0; i < items.length; i++) {
+
+      // 中間要加一個空間
+      if (i == items.length / 2 && items.length % 2 == 0) {
+        ws.add(SizedBox(
+          width: 36,
+        ));
+      }
+
       var color = (i == currentIndex)
           ? context.colors.scheme.primary
           : context.colors.scheme.outline;
@@ -62,6 +71,8 @@ class BuildNavigation extends StatelessWidget {
       );
     }
     return BottomAppBar(
+      shape: CircularNotchedRectangle(), // 凹槽形状
+      notchMargin: 5.0, 
       color: context.colors.scheme.surface,
       elevation: 0,
       child: ws
@@ -69,7 +80,7 @@ class BuildNavigation extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
       )
-      .height(kBottomNavigationBarHeight),
+      .height(kBottomNavigationBarHeight * 1.2),
     );
   }
 }
