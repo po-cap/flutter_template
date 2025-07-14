@@ -7,6 +7,9 @@ class WelcomeController extends GetxController {
   /// 欢迎数据
   List<WelcomeModel>? items;
 
+  /// 当前位置
+  int currentIndex = 0;
+
 
   /// 初始化数据
   _initData() {
@@ -28,10 +31,15 @@ class WelcomeController extends GetxController {
       ),
     ];
 
-    update(["slider"]);
+    update(["slider", 'bar']);
   }
 
-  void onTap() {}
+  /// 当前位置发生改变
+  void onPageChanged(int index) {
+    currentIndex = index;
+    update(['slider', 'bar']);
+  }
+
 
   @override
   void onReady() {
