@@ -57,7 +57,8 @@ dependencies:
   webview_flutter: ^4.13.0
   carousel_slider: ^5.1.1      # 輪播圖
   validatorless: ^1.2.4        # 表單驗證
-  wechat_assets_picker: ^9.5.1
+  wechat_assets_picker: ^9.5.1 # 選擇圖片
+  photo_view: ^0.15.0          # 圖片查看
 
 dev_dependencies:
   flutter_test:

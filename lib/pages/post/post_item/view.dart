@@ -21,17 +21,25 @@ class PostItemPage extends GetView<PostItemController> {
           runSpacing: 10,
           children: [
             for(final asset in controller.selectedAssets)
-              Container(
-                clipBehavior: Clip.antiAlias,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(AppRadius.image),
-                ),
-                child: AssetEntityImage(
-                  asset,
-                  isOriginal: false,
-                  width: width,
-                  height: width,
-                  fit: BoxFit.cover,
+              InkWell(
+                onTap: () {
+                  Get.to(GalleryWidget.assets(
+                    initialIndex: controller.selectedAssets.indexOf(asset), 
+                    assets: controller.selectedAssets
+                  ));
+                },
+                child: Container(
+                  clipBehavior: Clip.antiAlias,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(AppRadius.image),
+                  ),
+                  child: AssetEntityImage(
+                    asset,
+                    isOriginal: false,
+                    width: width,
+                    height: width,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             
