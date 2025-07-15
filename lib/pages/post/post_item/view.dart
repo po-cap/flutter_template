@@ -21,26 +21,41 @@ class PostItemPage extends GetView<PostItemController> {
           runSpacing: 10,
           children: [
             for(final asset in controller.selectedAssets)
-              InkWell(
-                onTap: () {
-                  Get.to(GalleryWidget.assets(
-                    initialIndex: controller.selectedAssets.indexOf(asset), 
-                    assets: controller.selectedAssets
-                  ));
+              Draggable(
+                data: asset,
+
+                // 當 draggable 被放置並被 [DragTarget] 接收時調用
+                onDragCompleted: () {
+                  controller.onSetTargetId("");
                 },
-                child: Container(
-                  clipBehavior: Clip.antiAlias,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(AppRadius.image),
-                  ),
-                  child: AssetEntityImage(
-                    asset,
-                    isOriginal: false,
-                    width: width,
-                    height: width,
-                    fit: BoxFit.cover,
-                  ),
-                ),
+
+                feedback: _buildPhotoItem(asset, width),
+                childWhenDragging: _buildPhotoItem(asset, width, opacity: 0.5),
+                child: DragTarget(
+                  builder: (context, candidateData, rejectedData) {
+                    return controller.assetTargetId == asset.id ?
+                    _buildPhotoItem(asset, width, opacity: 0.8) : 
+                     _buildPhotoItemWithDelete(asset, width);
+                  },
+                  onWillAcceptWithDetails: (details) {
+                    if(details.data == asset) {
+                      return false;
+                    } else {
+                      controller.onSetTargetId(asset.id);
+                      return true;
+                    }
+                  },
+                  onLeave: (data) {
+                    controller.onSetTargetId("");
+                  },
+
+                  onAcceptWithDetails: (details) {
+                    final fromAsset = details.data as AssetEntity;
+                    controller.onSwapAssets(fromAsset, asset);
+                  },
+
+
+                )
               ),
             
             if(controller.selectedAssets.length < 9)
@@ -64,6 +79,66 @@ class PostItemPage extends GetView<PostItemController> {
       }
     );
 
+  }
+
+  Widget _buildPhotoItemWithDelete(
+    AssetEntity asset, 
+    double width
+  ) {
+    return Stack(
+      children: [
+        _buildPhotoItem(asset, width),
+        Positioned(
+          top: 0,
+          right: 0,
+          child: _buildDeleteButton(asset, width),
+        )
+      ] 
+    );
+  }
+
+  Widget _buildDeleteButton(AssetEntity asset, double width) {
+    return InkWell(
+      onTap:() => controller.onRemoveAsset(asset),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.only(
+            topRight: Radius.circular(AppRadius.image),
+            bottomLeft: Radius.circular(AppRadius.image)
+          ),
+          color: Colors.white
+        ),
+        child: Icon(
+          Icons.close,
+          color: Colors.black,
+        ),
+      ),
+    );
+  }
+
+  InkWell _buildPhotoItem(AssetEntity asset, double width,{ double opacity = 1.0 }) {
+    return InkWell(
+              onTap: () {
+                Get.to(GalleryWidget.assets(
+                  initialIndex: controller.selectedAssets.indexOf(asset), 
+                  assets: controller.selectedAssets
+                ));
+              },
+              child: Container(
+                clipBehavior: Clip.antiAlias,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(AppRadius.image),
+                ),
+                child: AssetEntityImage(
+                  asset,
+                  isOriginal: false,
+                  width: width,
+                  height: width,
+                  fit: BoxFit.cover,
+                  opacity: AlwaysStoppedAnimation(opacity),
+                ),
+              ),
+            );
   }
 
   // 主视图

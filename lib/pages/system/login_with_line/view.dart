@@ -23,7 +23,10 @@ class LoginWithLinePage extends GetView<LoginWithLineController> {
       id: "login_with_line",
       builder: (_) {
         return Scaffold(
-          appBar: AppBar(title: const Text("login_with_line")),
+          appBar: AppBar(
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+          ),
           body: SafeArea(
             child: _buildView(),
           ),
