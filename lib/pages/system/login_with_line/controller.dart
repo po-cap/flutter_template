@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:template/common/index.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -23,6 +24,7 @@ class LoginWithLineController extends GetxController {
         maxRedirects: 0
       );
       final dio = Dio(options);
+    
       
       // 取得 login 的 cookie
       late String? lineLoginUri;
@@ -31,6 +33,7 @@ class LoginWithLineController extends GetxController {
         await dio.get('/api/login/line');
       } on DioException catch (e) {
         if(e.response?.statusCode != 302) {
+          debugPrint('statusCode is $e.response?.statusCode');
           throw Exception("statusCode is not 302");
         }
         lineLoginUri = e.response?.headers['location']?.first;
