@@ -14,8 +14,10 @@ class MainController extends GetxController {
   // 退出请求时间
   DateTime? currentBackPressTime;
 
-
-  _initData() {
+  /// 初始化数据
+  _initData() async {
+    // 读取用户 profile
+    await UserService.to.getProfile();
     update(["main"]);
   }
 
@@ -33,6 +35,7 @@ class MainController extends GetxController {
     } else {
       pageController.jumpToPage(page);
     }
+    //pageController.jumpToPage(page);
   }
 
   // 返回键退出
@@ -57,12 +60,6 @@ class MainController extends GetxController {
     return true;
   }
 
-
-
-  // @override
-  // void onInit() {
-  //   super.onInit();
-  // }
 
   @override
   void onReady() {

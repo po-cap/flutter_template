@@ -14,8 +14,13 @@ class InputWidget extends StatefulWidget {
     this.cleanable = true,
     this.readOnly = false,
     this.onChanged,
+    this.onEditingComplete,
     this.keyboardType,
     this.autofocus,
+    this.minLines,
+    this.maxLines,
+    this.border = true,
+    this.autoClear = false,
   });
 
   /// 输入框控制器
@@ -42,11 +47,26 @@ class InputWidget extends StatefulWidget {
   /// 输入变化回调
   final Function(String)? onChanged;
 
+  /// 输入完成回调
+  final Function(String)? onEditingComplete;
+
   /// 输入法类型
   final TextInputType? keyboardType;
 
   /// 自动焦点
   final bool? autofocus;
+
+  /// 最小行數
+  final int? minLines;  
+
+  /// 最大行數
+  final int? maxLines;
+
+  /// 是否有边框
+  final bool? border;
+
+  /// 自动清空
+  final bool? autoClear;
 
   // final FocusNode focusNode;
   // final TextStyle style;
@@ -150,9 +170,17 @@ class _InputWidgetState extends State<InputWidget> {
         });
         widget.onChanged?.call(value);
       },
+      onEditingComplete:() {
+        widget.onEditingComplete?.call(controller.text);
+        if(widget.autoClear == true) {
+          controller.clear();
+          focusNode.unfocus();
+        }
+      },
       keyboardType: widget.keyboardType,
       autofocus: widget.autofocus ?? false,
-      maxLines: 1, // 限制为单行
+      minLines: widget.minLines ?? 1,
+      maxLines: widget.maxLines ?? 1,
     );
 
     // 输入区域
@@ -173,22 +201,14 @@ class _InputWidgetState extends State<InputWidget> {
     // 返回
     return Container(
       padding: const EdgeInsets.all(5),
-      decoration: BoxDecoration(
-        color: Colors.transparent,
-        borderRadius: BorderRadius.circular(AppRadius.input),
-        border: Border.all(
-          color: hasFocus == true ? colorScheme.primary : Colors.transparent,
-          width: hasFocus == true ? 2 : 0,
-        ),
-      ),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
         decoration: BoxDecoration(
           color: Colors.transparent,
           borderRadius: BorderRadius.circular(AppRadius.input),
           border: Border.all(
-            color: colorScheme.outline,
-            width: 0.5,
+            color: widget.border == true ? colorScheme.primary : Colors.transparent,
+            width: hasFocus == true ? 2 : 0,
           ),
         ),
         child: <Widget>[

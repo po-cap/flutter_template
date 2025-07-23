@@ -1,4 +1,5 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
@@ -11,8 +12,11 @@ import 'global.dart';
 void main() async {
   await Global.init();
 
-  // TODO: 測試用
-  clearAllSharedPrefs();
+  // 測試時清除 SharedPreferences
+  if (kDebugMode) { // 只在調試模式下清除
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.clear(); // 或 prefs.remove('access_token');
+  }
 
   runApp(const MyApp());
 }
@@ -72,10 +76,4 @@ class MyApp extends StatelessWidget {
       ),
     );
   }
-}
-
-// 清除所有 SharedPreferences 資料（測試用）
-Future<void> clearAllSharedPrefs() async {
-  final prefs = await SharedPreferences.getInstance();
-  await prefs.clear();
 }

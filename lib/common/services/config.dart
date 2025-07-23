@@ -70,6 +70,16 @@ class ConfigService extends GetxService {
     AppTheme.setSystemStyle();
   }
 
+  // 切换主题
+  void switchThemeMode() {
+    // 品乓方式切换
+    themeMode = themeMode == AdaptiveThemeMode.light
+        ? AdaptiveThemeMode.dark
+        : AdaptiveThemeMode.light;
+
+    setThemeMode(themeMode.name);
+  }
+
   // 更改语言
   void setLanguage(Locale value) {
     locale = value;

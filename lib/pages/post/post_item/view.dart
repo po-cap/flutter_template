@@ -9,6 +9,44 @@ import 'index.dart';
 class PostItemPage extends GetView<PostItemController> {
   const PostItemPage({super.key});
 
+  Widget _buildListItem() {
+    return <Widget>[
+      GestureDetector(
+        onTap: () {
+          controller.onEditSalesAttributes();
+        },
+        child: BarItemWidget(
+          title: "商品規格", 
+          value: "非必填，設置多個顏色、尺寸等",
+        ),
+      ),
+      BarItemWidget(
+        title: "價格", 
+        value: "NT\$0.0",
+      ),
+      BarItemWidget(
+        title: "發貨方式", 
+        value: "包郵",
+      ),
+    ].toColumn()
+    .paddingTop(AppSpace.listItem);
+  }
+
+  Widget _buildContentInput() {
+    return LimitedBox(
+      maxHeight: 200,
+      child: TextField(
+        controller: controller.contentController,
+        maxLines: null,
+        minLines: 5,
+        decoration: const InputDecoration(
+          hintText: "描述一下商品",
+          border: InputBorder.none,
+        ),
+      ),
+    );
+  }
+
   // 圖片列表
   Widget _buildPhotoList() {
 
@@ -61,17 +99,18 @@ class PostItemPage extends GetView<PostItemController> {
             if(controller.selectedAssets.length < 9)
               InkWell(
                 onTap: controller.onSelectAssets,
-                child: Container(
+                borderRadius: BorderRadius.circular(AppRadius.image),
+                child: Ink(
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(AppRadius.image),
-                    color: context.theme.colorScheme.surfaceContainerHigh,
+                      borderRadius: BorderRadius.circular(AppRadius.image),
+                      color: context.theme.colorScheme.surfaceContainerHigh,
                   ),
                   width: width,
                   height: width,
                   child: Icon(
                     Icons.add,
                     color: context.theme.colorScheme.onSurface,
-                  ),
+                  )
                 ),
               ) 
           ],
@@ -116,38 +155,47 @@ class PostItemPage extends GetView<PostItemController> {
     );
   }
 
-  InkWell _buildPhotoItem(AssetEntity asset, double width,{ double opacity = 1.0 }) {
-    return InkWell(
-              onTap: () {
-                Get.to(GalleryWidget.assets(
-                  initialIndex: controller.selectedAssets.indexOf(asset), 
-                  assets: controller.selectedAssets
-                ));
-              },
-              child: Container(
-                clipBehavior: Clip.antiAlias,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(AppRadius.image),
-                ),
-                child: AssetEntityImage(
-                  asset,
-                  isOriginal: false,
-                  width: width,
-                  height: width,
-                  fit: BoxFit.cover,
-                  opacity: AlwaysStoppedAnimation(opacity),
-                ),
-              ),
-            );
+  Widget _buildPhotoItem(AssetEntity asset, double width,{ double opacity = 1.0 }) {
+    return GestureDetector(
+      onTap: () {
+        Get.to(GalleryWidget.assets(
+          initialIndex: controller.selectedAssets.indexOf(asset), 
+          assets: controller.selectedAssets
+        ));
+      },
+      child: Container(
+        clipBehavior: Clip.antiAlias,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(AppRadius.image),
+        ),
+        child: AssetEntityImage(
+          asset,
+          isOriginal: false,
+          width: width,
+          height: width,
+          fit: BoxFit.cover,
+          opacity: AlwaysStoppedAnimation(opacity),
+        ),
+      ),
+    );
   }
 
   // 主视图
   Widget _buildView() {
     return <Widget>[
+      // 商品描述文字輸入框
+      _buildPhotoList()
+      .paddingBottom(AppSpace.listItem),
+
       // 圖片列表
-      _buildPhotoList(),
+      _buildContentInput(),
+
+      // 參數規格
+      _buildListItem(),
     ]
-    .toColumn()
+    .toColumn(
+      crossAxisAlignment: CrossAxisAlignment.start
+    )
     .padding(all:AppSpace.page * 2);
   }
 
@@ -158,7 +206,7 @@ class PostItemPage extends GetView<PostItemController> {
       id: "post_item",
       builder: (_) {
         return Scaffold(
-          appBar: AppBar(title: const Text("post_item")),
+          appBar: AppBarWidget(),
           body: SafeArea(
             child: _buildView(),
           ),

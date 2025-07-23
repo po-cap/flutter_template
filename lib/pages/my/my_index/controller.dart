@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:template/common/index.dart';
+import 'package:template/pages/index.dart';
 
 class MyIndexController extends GetxController {
   MyIndexController();
@@ -18,6 +20,12 @@ class MyIndexController extends GetxController {
   void onReady() {
     super.onReady();
     _initData();
+  }
+
+   // 注销
+  void onLogout() {
+    UserService.to.logout();
+    Get.find<MainController>().onJumpToPage(0);
   }
 
   // @override

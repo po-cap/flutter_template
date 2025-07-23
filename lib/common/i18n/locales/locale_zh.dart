@@ -49,5 +49,27 @@ Map<String, String> localeZh = {
   LocaleKeys.welcomeNext: '下一頁',
   LocaleKeys.welcomeStart: '立刻開始',
 
+  // 我的
+  LocaleKeys.myTabWishlist: '喜欢',
+  LocaleKeys.myTabFollowing: '关注',
+  LocaleKeys.myTabVoucher: '收据',
+  LocaleKeys.myBtnMyOrder: '我的订单',
+  LocaleKeys.myBtnMyWallet: '我的钱包',
+  LocaleKeys.myBtnEditProfile: '编辑个人资料',
+  LocaleKeys.myBtnAddress: '送货地址',
+  LocaleKeys.myBtnNotification: '消息',
+  LocaleKeys.myBtnLanguage: '语言',
+  LocaleKeys.myBtnTheme: '主题',
+  LocaleKeys.myBtnWinGift: '赢取礼物',
+  LocaleKeys.myBtnStyles: '样式组件',
+  LocaleKeys.myBtnLogout: '注销',
+  LocaleKeys.myBtnBillingAddress: '发票地址',
+  LocaleKeys.myBtnShippingAddress: '配送地址',
+
+  // 發布
+  LocaleKeys.postPostButton: '發布',
+  LocaleKeys.postDeleteSalesAttribute: '刪除',
+  LocaleKeys.postEnterSAValue: '輸入具體的',
+  LocaleKeys.postEnterSpecName: '輸入規格名稱',
 };
 

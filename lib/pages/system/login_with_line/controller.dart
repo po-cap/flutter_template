@@ -59,7 +59,9 @@ class LoginWithLineController extends GetxController {
               await UserService.to.getProfile();
       
               Loading.success();
-              Get.offNamed(RouteNames.systemMain);
+              for(var iter = 0; iter < 2; iter++) {
+                Get.back();
+              }
               return NavigationDecision.prevent;
             }
             return NavigationDecision.navigate;

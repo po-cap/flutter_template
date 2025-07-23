@@ -7,3 +7,4 @@ export 'error_message.dart';
 export 'welcome_model.dart';
 
 export './assets/index.dart';
+export './item_model/index.dart';

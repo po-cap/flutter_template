@@ -92,7 +92,7 @@ class _MainViewGetX extends GetView<MainController> {
           physics: const NeverScrollableScrollPhysics(),
           controller: controller.pageController,
           onPageChanged: controller.onIndexChanged,
-          children: const [
+          children: [
             // 加入空页面占位
             HomePage(),
             CartIndexPage(),
