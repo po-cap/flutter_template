@@ -147,12 +147,21 @@ class PostItemController extends GetxController {
 
   void onEditSalesAttributes() {
     showModalBottomSheet(
-      context: Get.context!, 
-      isScrollControlled: true, // 允許控制高度
+      context: Get.context!,
+      isScrollControlled: true,
+      enableDrag: false,
       builder:(context) {
-        return const SAItem();
+        return SaEditPage();
       },
     );
+
+    //showModalBottomSheet(
+    //  context: Get.context!, 
+    //  isScrollControlled: true, // 允許控制高度
+    //  builder:(context) {
+    //    return const SAItem();
+    //  },
+    //);
   }
 
   @override

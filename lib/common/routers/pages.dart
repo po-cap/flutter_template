@@ -36,6 +36,7 @@ class RoutePages {
       GetPage(
         name: RouteNames.postPostItem,
         page: () => const PostItemPage(),
+        binding: PostItemBinding(),
       ),
       GetPage(
         name: RouteNames.stylesButtons,

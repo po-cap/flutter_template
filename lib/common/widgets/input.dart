@@ -19,7 +19,7 @@ class InputWidget extends StatefulWidget {
     this.autofocus,
     this.minLines,
     this.maxLines,
-    this.border = true,
+    this.hasBorder = true,
     this.autoClear = false,
   });
 
@@ -63,7 +63,7 @@ class InputWidget extends StatefulWidget {
   final int? maxLines;
 
   /// 是否有边框
-  final bool? border;
+  final bool? hasBorder;
 
   /// 自动清空
   final bool? autoClear;
@@ -207,7 +207,7 @@ class _InputWidgetState extends State<InputWidget> {
           color: Colors.transparent,
           borderRadius: BorderRadius.circular(AppRadius.input),
           border: Border.all(
-            color: widget.border == true ? colorScheme.primary : Colors.transparent,
+            color: widget.hasBorder == true ? colorScheme.primary : Colors.transparent,
             width: hasFocus == true ? 2 : 0,
           ),
         ),
