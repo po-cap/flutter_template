@@ -8,10 +8,76 @@ import 'index.dart';
 class HomePage extends GetView<HomeController> {
   const HomePage({super.key});
 
-  // 导航栏
-  AppBar _buildAppBar() {
-    return AppBar();
+   // 导航栏
+  AppBar _buildAppBar(BuildContext context) {
+    return AppBar(
+      // 背景透明
+      // backgroundColor: Colors.transparent,
+      // 取消阴影
+      // elevation: 0,
+      // 标题栏左侧间距
+      titleSpacing: AppSpace.listItem,
+      // 搜索栏
+      title: <Widget>[
+        // 搜索
+        IconWidget.icon(
+          Icons.search_outlined,
+          text: LocaleKeys.gHomeNewProduct.tr,
+          size: 24,
+          color: context.colors.scheme.outline,
+        ).expanded(),
+
+        // 分割线
+        SizedBox(
+          width: 1,
+          height: 18,
+          child: Container(
+            color: context.colors.scheme.outline,
+          ),
+        ).paddingHorizontal(5),
+
+        // 拍照
+        IconWidget.icon(
+          Icons.camera_alt_outlined,
+          size: 24,
+          color: context.colors.scheme.outline,
+        )
+      ]
+          .toRow()
+          .padding(
+            left: 20,
+            top: 5,
+            right: 10,
+            bottom: 5,
+          )
+          .decorated(
+            borderRadius: BorderRadius.circular(AppRadius.input),
+            border: Border.all(
+              color: context.colors.scheme.outline,
+              width: 1,
+            ),
+          )
+          .tight(height: 40.h, width: double.infinity)
+          .paddingLeft(10)
+          .onTap(controller.onAppBarTap),
+      // 右侧的按钮区
+      actions: [
+        // 图标
+        const IconWidget.svg(
+          AssetsSvgs.pNotificationsSvg,
+          size: 20,
+          isDot: true, // 未读消息 小圆点
+        )
+            .unconstrained() // 去掉约束, appBar 会有个约束下来
+            .padding(
+              left: AppSpace.listItem,
+              right: AppSpace.page,
+            ),
+      ],
+    );
   }
+
+
 
   // 轮播广告
   Widget _buildBanner() {
