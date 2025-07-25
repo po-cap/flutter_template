@@ -20,6 +20,10 @@
         page: () => const WidgetsPage(),
       ),
       GetPage(
+        name: RouteNames.postAlbum,
+        page: () => const AlbumPage(),
+      ),
+      GetPage(
         name: RouteNames.postAlbumEdit,
         page: () => const AlbumEditPage(),
       ),
@@ -32,16 +36,16 @@
         page: () => const WidgetsPage(),
       ),
       GetPage(
+        name: RouteNames.postPriceEdit,
+        page: () => const PriceEditPage(),
+      ),
+      GetPage(
         name: RouteNames.postSaEdit,
         page: () => const SaEditPage(),
       ),
       GetPage(
         name: RouteNames.postSkuEdit,
         page: () => const SkuEditPage(),
-      ),
-      GetPage(
-        name: RouteNames.priceEdit,
-        page: () => const PriceEditPage(),
       ),
       GetPage(
         name: RouteNames.stylesButtons,

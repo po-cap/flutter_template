@@ -6,6 +6,7 @@ import 'package:wechat_assets_picker/wechat_assets_picker.dart';
 
 class PostApi {
 
+  /// 上傳照片（影片）
   static Future<String> upload(AssetEntity asset) async {
 
     // 1. 壓縮照片
@@ -39,4 +40,25 @@ class PostApi {
     return data.url;
   }
 
+  /// 新增鏈結
+  static Future<void> addItem({
+    required String description,
+    required List<String> album,
+    required List<SkuModel> skus
+  }) async { 
+    await WPHttpService.to.post(
+      '/api/item',
+      data: {
+        'description': description,
+        'album': album,
+        'skus': skus.map((e) => {
+          'name': e.name,
+          'specs': e.specs,
+          'photo': e.photo,
+          'price': e.price,
+          'quantity': e.quantity
+        }).toList()
+      }
+    );
+  }
 }

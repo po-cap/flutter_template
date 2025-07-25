@@ -1,5 +1,5 @@
 library;
 
-export 'sales_attribute.dart';
-export 'sales_attribute_value.dart';
+export 'sales_option.dart';
+export 'sales_option_value.dart';
 export 'sku.dart';

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:template/common/index.dart';
-import 'package:template/pages/post/album_edit/view.dart';
+import 'package:template/pages/index.dart';
 import 'package:ducafe_ui_core/ducafe_ui_core.dart';
-import 'package:template/pages/price_edit/index.dart';
+import 'package:template/pages/post/album/view.dart';
 
-import 'index.dart';
 
 class PostItemPage extends GetView<PostItemController> {
   const PostItemPage({super.key});
@@ -14,38 +13,25 @@ class PostItemPage extends GetView<PostItemController> {
     return <Widget>[
       GestureDetector(
         onTap: () {
-          controller.onEditSalesAttributes();
+          controller.onEditOptions();
         },
         child: BarItemWidget(
           title: "商品規格", 
-          value: "非必填，設置多個顏色、尺寸等",
+          value: controller.skuName,
         ),
       ),
       GestureDetector(
-        onTap: () {
-          showModalBottomSheet(
-            context: Get.context!, 
-            isScrollControlled: true,
-            builder:(context) {
-              return PriceEditPage();
-            },
-          );
-        },
+        onTap: controller.onEditPrice,
         child: BarItemWidget(
           title: "價格", 
-          value: "NT\$0.0",
+          value: controller.price,
         ),
-      ),
-      BarItemWidget(
-        title: "發貨方式", 
-        value: "包郵",
       ),
     ].toColumn()
     .paddingTop(AppSpace.listItem);
   }
 
   Widget _buildContentInput() {
-
     return LimitedBox(
       maxHeight: 200,
       child: TextField(
@@ -61,23 +47,26 @@ class PostItemPage extends GetView<PostItemController> {
     );
   }
 
-
   // 主视图
   Widget _buildView() {
-    return <Widget>[
-      // 商品圖片
-      AlbumEditPage(),
-
-      // 圖片列表
-      _buildContentInput(),
-
-      // 參數規格
-      _buildListItem(),
-    ]
-    .toColumn(
-      crossAxisAlignment: CrossAxisAlignment.start
-    )
-    .padding(all:AppSpace.page * 2);
+    return SingleChildScrollView(
+      child: [
+        // 商品圖片
+        //AlbumEditPage(),
+      
+        AlbumPage(),
+      
+        // 圖片列表
+        _buildContentInput(),
+      
+        // 參數規格
+        _buildListItem(),
+      ]
+      .toColumn(
+        crossAxisAlignment: CrossAxisAlignment.start
+      )
+      .padding(all:AppSpace.page * 2),
+    );
   }
 
   @override

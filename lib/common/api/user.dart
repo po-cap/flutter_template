@@ -101,7 +101,6 @@ class UserApi {
 
   }
 
-
   // 從 callback endpoint 中得到 token
   static Future<UserTokenModel> loginFromCB(
     String cbEndpoint,

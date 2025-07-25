@@ -2,42 +2,41 @@ import 'package:ducafe_ui_core/ducafe_ui_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:template/common/index.dart';
-import 'package:wechat_assets_picker/wechat_assets_picker.dart';
 
 import 'index.dart';
 
 class SaEditPage extends GetView<SaEditController> {
   const SaEditPage({super.key});
 
-  Widget _buildAddPhotoBtn(SalesAttributeValueModel value) {
+  Widget _buildPhoto(
+    SalesOptionModel option,
+    int valueIdx
+  ) {
     return GestureDetector(
-      onTap: () => controller.onAddValuePhoto(value),
-      child: Icon(Icons.camera_alt)
-    );
-  }
-
-  Widget _buildPhoto(SalesAttributeValueModel value) {
-    return GestureDetector(
-      onTap: () => controller.onAddValuePhoto(value),
+      onTap: () => controller.onAddValuePhoto(option, valueIdx),
       child: Container(
         clipBehavior: Clip.antiAlias,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(AppRadius.image),
         ),
-        child: AssetEntityImage(
-          value.asset!,
-          isOriginal: false,
-          width: 30,
+        child: option.values[valueIdx].url != null ? 
+        ImageWidget.img(
+          option.values[valueIdx].url!, 
+          fit: BoxFit.cover, 
+          width: 30, 
           height: 30,
-          fit: BoxFit.cover,
+        ):
+        const Icon(
+          Icons.camera_alt,
+          size: 30,
         ),
       ),
     );
   }
 
   Widget _buildDeleteValueBtn(
-    SalesAttributeModel sa,
-    SalesAttributeValueModel value
+    SalesOptionModel sa,
+    SalesOptionValueModel value
   ) {
     return GestureDetector(
       onTap: () => controller.onDeleteSAValue(sa, value),
@@ -45,25 +44,20 @@ class SaEditPage extends GetView<SaEditController> {
     );
   }
 
-  Widget _buildAttributeValue(
-    SalesAttributeModel sa,
+  Widget _buildOptionValue(
+    SalesOptionModel sa,
     int vauleIdx
   ) {
-
-    final saIdx = controller.salesAttributes.indexOf(sa);
 
     return [
 
       /// 銷售屬性照片
-      /// 記住，只有第一個銷售屬性到屬性值，可以有照片
-      if(saIdx == 0)
-      sa.values[vauleIdx].asset == null ?
-      _buildAddPhotoBtn(sa.values[vauleIdx]).paddingRight(AppSpace.listRow) :
-      _buildPhoto(sa.values[vauleIdx]).paddingRight(AppSpace.listRow),
-      
+      _buildPhoto(sa, vauleIdx)
+      .paddingRight(AppSpace.listRow),
+
       /// 屬性值名稱
       TextWidget
-      .body(sa.values[vauleIdx].value,)
+      .body(sa.values[vauleIdx].name,)
       .expanded(),
 
 
@@ -73,10 +67,10 @@ class SaEditPage extends GetView<SaEditController> {
     ].toRow();
   }
 
-  Widget _buildSalesAttribute(int index) {
+  Widget _buildOption(int index) {
 
-    var sa = controller.salesAttributes[index];
-    var textController = controller.textControllers[index];
+    var sa = controller.options[index];
+    var textController = controller.options[index].textController;
 
     return [
       
@@ -85,13 +79,13 @@ class SaEditPage extends GetView<SaEditController> {
       InputWidget(
         controller: textController,  
         placeholder: "添加規格類型",
-        onEditingComplete: (name) => controller.onSetSAName(name, index),
+        onEditingComplete: (name) => controller.onSetName(index),
         autoClear: true,
         hasBorder: false,
       ) : [
         TextWidget.h4(sa.name),
         GestureDetector(
-          onTap: () => controller.onDeleteSA(index),
+          onTap: () => controller.onDeleteOption(index),
           child: const Icon(Icons.delete_outline),
         ),
       ].toRow(
@@ -101,13 +95,13 @@ class SaEditPage extends GetView<SaEditController> {
 
       /// 屬性值列表
       for(int i = 0; i < sa.values.length; i++)
-      _buildAttributeValue(sa, i)
+      _buildOptionValue(sa, i)
       .paddingAll(AppSpace.card),
 
       /// 添加屬性值
       if(sa.name.isNotEmpty)
       InputWidget(
-        controller: controller.textControllers[index],
+        controller: controller.options[index].textController,
         placeholder: "添加屬性值",
         onEditingComplete: (val) => controller.onAddSAValue(sa, val),
         autoClear: true,
@@ -122,17 +116,17 @@ class SaEditPage extends GetView<SaEditController> {
       child: [
 
         // 銷售屬性 widget
-        for(int i = 0; i < controller.salesAttributes.length; i++)
-        _buildSalesAttribute(i)
+        for(int i = 0; i < controller.options.length; i++)
+        _buildOption(i)
         .paddingAll(AppSpace.card)
         .card()
         .paddingBottom(AppSpace.listItem),
 
         // 添加銷售屬性 button
-        if(controller.salesAttributes.length < 2)
+        if(controller.options.length < 2)
         ButtonWidget.ghost(
           "添加規格類型", 
-          onTap: () => controller.onAddSA(),
+          onTap: () => controller.onAddOption(),
         ).width(double.infinity)
         .padding(
           left: AppSpace.card / 2,
@@ -157,23 +151,19 @@ class SaEditPage extends GetView<SaEditController> {
             appBar: AppBar(
               backgroundColor: Colors.transparent,
               elevation: 0,
-              title: TextWidget.h4("設定商品規格")
+              title: TextWidget.h4("設定商品規格"),
+              leading: IconButton(
+                icon: Icon(Icons.arrow_back),
+                onPressed: () => controller.onCloseEditor()
+              ),
             ),
             body: SafeArea(
               child: _buildView(),
             ),
-            bottomSheet: Container(
-              height: MediaQuery.of(context).size.height * 0.1,
-              alignment: Alignment.center,
-              child: ButtonWidget.primary(
-                  "下一步 設置價格與庫存",
-                  onTap: () {},
-                ).width(double.infinity)
-                .padding(
-                  left: AppSpace.card,
-                  right: AppSpace.card,
-                  bottom: AppSpace.paragraph * 2,
-                )
+            bottomSheet: SheetButtonWidget(
+              onTap: () => controller.onToSKUEditPage(),
+              text: "下一步 設置價格與庫存",
+              withBackNav: true
             ),
             resizeToAvoidBottomInset: false
           ),

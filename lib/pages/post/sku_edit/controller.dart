@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:template/common/index.dart';
+import 'package:template/pages/index.dart';
 
 class SkuEditController extends GetxController {
   SkuEditController();
@@ -11,6 +12,14 @@ class SkuEditController extends GetxController {
   }
 
   void onTap() {}
+
+  void onSetSkuPrice(SkuModel sku) {
+    Sheet.page(
+      child: PriceEditPage(
+        sku: sku,
+      )
+    );
+  }
 
   // @override
   // void onInit() {

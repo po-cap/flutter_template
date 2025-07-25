@@ -8,14 +8,14 @@ class SkuModel {
   Map<String,String> specs;
   double price;
   String? photo;
-  int availableStock;
+  int quantity;
 
   SkuModel({
     required this.id,
     required this.name,
     required this.specs,
     required this.price,
-    required this.availableStock,
+    required this.quantity,
     this.photo
   });
 
@@ -36,7 +36,7 @@ class SkuModel {
       specs: json['specs'],
       price: json['price'],
       photo: json['photo'],
-      availableStock: json['availableStock'],
+      quantity: json['availableStock'],
     );
   }
 
@@ -46,6 +46,6 @@ class SkuModel {
     'specs': specs,
     'price': price,
     'photo': photo,
-    'availableStock': availableStock
+    'availableStock': quantity
   };
 }
