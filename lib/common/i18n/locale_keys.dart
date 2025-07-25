@@ -69,4 +69,11 @@ class LocaleKeys {
   static const postDeleteSalesAttribute = "post_delete_sales_attribute";
   static const postEnterSAValue = "post_enter_sa_value";
   static const postEnterSpecName = "post_enter_spec_name";
+
+  // 商品 - 首页
+  static const gHomeSearch = 'goods_home_search';
+  static const gHomeFlashSell = 'goods_home_flash_shell';
+  static const gHomeNewProduct = 'goods_home_new_product';
+  static const gHomeMore = 'goods_home_more';
+
 }

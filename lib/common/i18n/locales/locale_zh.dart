@@ -71,5 +71,12 @@ Map<String, String> localeZh = {
   LocaleKeys.postDeleteSalesAttribute: '刪除',
   LocaleKeys.postEnterSAValue: '輸入具體的',
   LocaleKeys.postEnterSpecName: '輸入規格名稱',
+
+  // 商品 - 首页
+  LocaleKeys.gHomeSearch: '搜索商品',
+  LocaleKeys.gHomeFlashSell: '热卖商品',
+  LocaleKeys.gHomeNewProduct: '新上商品',
+  LocaleKeys.gHomeMore: '所有',
+
 };
 

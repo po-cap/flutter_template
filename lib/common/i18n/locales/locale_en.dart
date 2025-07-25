@@ -72,4 +72,11 @@ Map<String, String> localeEn = {
   LocaleKeys.postDeleteSalesAttribute: 'Delete',
   LocaleKeys.postEnterSAValue: 'Enter the specific ',
   LocaleKeys.postEnterSpecName: 'Enter Specification name',
+
+  // 商品 - 首页
+  LocaleKeys.gHomeSearch: 'Search Product',
+  LocaleKeys.gHomeFlashSell: 'Flash Sell',
+  LocaleKeys.gHomeNewProduct: 'New Product',
+  LocaleKeys.gHomeMore: 'ALL',
+
 };
