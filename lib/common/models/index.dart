@@ -5,6 +5,7 @@ export './request/user_login.dart';
 export 'user_token.dart';
 export 'error_message.dart';
 export 'welcome_model.dart';
+export 'kv.dart';
 
 export './assets/index.dart';
 export './item_model/index.dart';

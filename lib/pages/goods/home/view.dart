@@ -57,7 +57,7 @@ class HomePage extends GetView<HomeController> {
               width: 1,
             ),
           )
-          .tight(height: 40.h, width: double.infinity)
+          .tight(height: 40, width: double.infinity)
           .paddingLeft(10)
           .onTap(controller.onAppBarTap),
       // 右侧的按钮区
@@ -81,10 +81,21 @@ class HomePage extends GetView<HomeController> {
 
   // 轮播广告
   Widget _buildBanner() {
-    return Container()
+    return GetBuilder<HomeController>(
+            id: "home_banner",
+            builder: (_) {
+              return CarouselWidget(
+                items: controller.bannerItems,
+                currentIndex: controller.bannerCurrentIndex,
+                onPageChanged: controller.onChangeBanner,
+                height: 190,
+              );
+            })
+        .clipRRect(all: AppRadius.image)
         .sliverToBoxAdapter()
         .sliverPaddingHorizontal(AppSpace.page);
   }
+
 
   // 分类导航
   Widget _buildCategories() {
@@ -146,7 +157,7 @@ class HomePage extends GetView<HomeController> {
       id: "home",
       builder: (_) {
         return Scaffold(
-          appBar: _buildAppBar(),
+          appBar: _buildAppBar(context),
           body: _buildView(),
         );
       },
