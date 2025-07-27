@@ -56,7 +56,8 @@ class PostApi {
           'specs': e.specs,
           'photo': e.photo,
           'price': e.price,
-          'quantity': e.quantity
+          'quantity': e.quantity,
+          'spec': e.specs
         }).toList()
       }
     );

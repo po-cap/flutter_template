@@ -115,4 +115,19 @@ class UserApi {
     return UserTokenModel.fromJson(response.data);
   }
 
+  // refresh token
+  static Future<UserTokenModel> refreshToken() async {
+    final response = await WPHttpService.to.post(
+      '/oauth/token',
+      options: Options(
+        contentType: 'application/x-www-form-urlencoded'
+      ),
+      data: FormData.fromMap({
+        'grant_type': 'refresh_token',
+        'client_id': 'xiao_hong_mao',
+        'refresh_token': UserService.to.refreshToken
+      })
+    );
+    return UserTokenModel.fromJson(response.data);
+  }
 }

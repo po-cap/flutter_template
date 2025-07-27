@@ -157,7 +157,7 @@ class RequestInterceptors extends Interceptor {
               // 401 未登录
               case 401:
                 // 注销 并跳转到登录页面
-                _errorNoAuthLogout();
+                _errorNoAuth();
                 break;
               case 404:
                 break;
@@ -189,9 +189,21 @@ class RequestInterceptors extends Interceptor {
   }
 
   // 退出并重新登录
-  Future<void> _errorNoAuthLogout() async {
-    await UserService.to.logout();
-    Get.toNamed(RouteNames.systemLogin);
+  Future<void> _errorNoAuth() async {
+    
+    try {
+      // 刷新 token
+      final token = await UserApi.refreshToken();
+      // 儲存 token
+      await UserService.to.setToken(token);
+      // 取得使用者資料
+      await UserService.to.getProfile();
+    } catch (e) {
+      // 登出
+      await UserService.to.logout();
+      // 跳转到登录
+      Get.toNamed(RouteNames.systemLogin);
+    }
   }
 }
 

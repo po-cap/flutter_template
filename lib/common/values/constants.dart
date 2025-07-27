@@ -3,8 +3,6 @@ class Constants {
   // wp 服务器
   static const wpApiBaseUrl         = 'https://t8.supojen.com';
   
-  static const oAuthBaseUrl         = "https://t8.supojen.com";
-
   static const authorizeEndpoint    = 'https://t8.supojen.com/oauth/authorize';
   static const tokenEndpoint        = 'https://t8.supojen.com/oauth/token';
 
