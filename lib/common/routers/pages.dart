@@ -26,6 +26,10 @@ class RoutePages {
         page: () => const HomePage(),
       ),
       GetPage(
+        name: RouteNames.goodsItemDetail,
+        page: () => const ItemDetailPage(),
+      ),
+      GetPage(
         name: RouteNames.msgMsgIndex,
         page: () => const MsgIndexPage(),
       ),

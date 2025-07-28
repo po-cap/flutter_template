@@ -14,6 +14,11 @@ class SkuEditController extends GetxController {
   void onTap() {}
 
   void onSetSkuPrice(SkuModel sku) {
+
+    final priceEditController = Get.find<PriceEditController>();
+    priceEditController.priceController.text = sku.price.toString();
+    priceEditController.quantityController.text = sku.quantity.toString();
+
     Sheet.page(
       child: PriceEditPage(
         sku: sku,

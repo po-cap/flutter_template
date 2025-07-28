@@ -1,7 +1,9 @@
 import 'package:ducafe_ui_core/ducafe_ui_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 import 'package:template/common/index.dart';
+import 'package:waterfall_flow/waterfall_flow.dart';
 
 import 'index.dart';
 
@@ -77,8 +79,6 @@ class HomePage extends GetView<HomeController> {
     );
   }
 
-
-
   // 轮播广告
   Widget _buildBanner() {
     return GetBuilder<HomeController>(
@@ -96,7 +96,6 @@ class HomePage extends GetView<HomeController> {
         .sliverPaddingHorizontal(AppSpace.page);
   }
 
-
   // 分类导航
   Widget _buildCategories() {
     return Container()
@@ -111,11 +110,30 @@ class HomePage extends GetView<HomeController> {
         .sliverPaddingHorizontal(AppSpace.page);
   }
 
-  // New Sell
-  Widget _buildNewSell() {
-    return Container()
-        .sliverToBoxAdapter()
+  // 新商品
+  Widget _buildNewItems() {
+    return GetBuilder<HomeController>(
+      id: "home_new_items",
+      builder: (_) {
+        return SliverWaterfallFlow(
+          gridDelegate: const SliverWaterfallFlowDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2, // 列数
+            crossAxisSpacing: 8, // 列间距
+            mainAxisSpacing: 8, // 行间距
+          ),
+          delegate: SliverChildBuilderDelegate(
+            (_, index) {
+              var item = controller.newItems[index];
+              return ProductItemWidget(
+                item: item,
+              );
+            },
+            childCount: controller.newItems.length
+          ), 
+        ).sliverPadding(bottom: AppSpace.page)
         .sliverPaddingHorizontal(AppSpace.page);
+      },
+    );
   }
 
   // 主视图
@@ -144,7 +162,7 @@ class HomePage extends GetView<HomeController> {
             .sliverPaddingHorizontal(AppSpace.page),
 
         // list
-        _buildNewSell(),
+        _buildNewItems(),
       ],
     );
   }
@@ -158,7 +176,14 @@ class HomePage extends GetView<HomeController> {
       builder: (_) {
         return Scaffold(
           appBar: _buildAppBar(context),
-          body: _buildView(),
+          body: SmartRefresher(
+            controller: controller.refreshController, // 刷新控制器
+            enablePullUp: true, // 启用上拉加载
+            onRefresh: controller.onRefresh, // 下拉刷新回调
+            onLoading: controller.onLoading, // 上拉加载回调
+            footer: const SmartRefresherFooterWidget(), // 底部加载更
+            child: _buildView()
+          ),
         );
       },
     );

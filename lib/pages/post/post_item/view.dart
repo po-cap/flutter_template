@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:template/common/index.dart';
 import 'package:template/pages/index.dart';
 import 'package:ducafe_ui_core/ducafe_ui_core.dart';
-import 'package:template/pages/post/album/view.dart';
 
 
 class PostItemPage extends GetView<PostItemController> {

@@ -7,12 +7,14 @@ class ItemModel {
   final String description;
   final SellerModel seller;
   final List<String> album;
+  final Map<String, dynamic> spec;
 
   ItemModel({
     required this.id, 
     required this.description, 
     required this.seller, 
-    required this.album
+    required this.album,
+    required this.spec
   });
 
 
@@ -21,7 +23,8 @@ class ItemModel {
       id: json['id'],
       description: json['description'],
       seller: SellerModel.fromJson(json['user']),
-      album: List<String>.from(json['album'])
+      album: List<String>.from(json['album']),
+      spec: json['spec']
     );
   }
 
@@ -29,6 +32,7 @@ class ItemModel {
     'id': id,
     'description': description,
     'user': seller.toJson(),
-    'album': album
+    'album': album,
+    'spec': spec
   };
 }

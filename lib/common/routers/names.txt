@@ -1,5 +1,6 @@
 static const cartCartIndex = '/cart_cart_index';
 static const goodsHome = '/goods_home';
+static const goodsItemDetail = '/goods_item_detail';
 static const msgMsgIndex = '/msg_msg_index';
 static const myMyIndex = '/my_my_index';
 static const myMyIndexWidgets = '/my_my_index_widgets';

@@ -18,9 +18,9 @@ class PriceEditPage extends GetView<PriceEditController> {
 
   // 主视图
   Widget _buildView() {
-    return <Widget>[
+    return [
 
-      if(sku != null)
+      if(sku!.name.isNotEmpty)
       TextWidget.h4("設定\"${sku!.name}\""),
 
       InputWidget(
@@ -37,7 +37,8 @@ class PriceEditPage extends GetView<PriceEditController> {
         keyboardType: TextInputType.number,
       ),
 
-    ].toColumn().paddingAll(AppSpace.page);
+    ].toColumn()
+    .paddingAll(AppSpace.page);
   }
 
   @override

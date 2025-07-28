@@ -6,10 +6,10 @@ import 'package:get/get.dart';
 class Sheet {
 
   /// 從底部彈出頁面
-  static void page({
+  static Future page({
     required Widget child
-  }) {
-    showModalBottomSheet(
+  }) async {
+    await showModalBottomSheet(
       context: Get.context!, 
       isScrollControlled: true,
       enableDrag: false,

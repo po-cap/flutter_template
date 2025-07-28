@@ -51,6 +51,9 @@ class PostApi {
       data: {
         'description': description,
         'album': album,
+        'spec': {
+          'price': skus.displayPrice()
+        },
         'skus': skus.map((e) => {
           'name': e.name,
           'specs': e.specs,

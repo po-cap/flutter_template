@@ -5,6 +5,7 @@ export 'cart/cart_index/index.dart';
 
 // 商品
 export 'goods/home/index.dart';
+export 'goods/item_detail/index.dart';
 
 // 消息
 export 'msg/msg_index/index.dart';

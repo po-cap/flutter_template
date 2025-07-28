@@ -16,16 +16,21 @@ class AssetsSvgs {
   static const iArrowDownSvg = 'assets/svgs/i-arrow-down.svg';
   static const iArrowLeftUpSvg = 'assets/svgs/i-arrow-left-up.svg';
   static const iArrowRightSvg = 'assets/svgs/i-arrow-right.svg';
+  static const iBookmarkOutlineSvg = 'assets/svgs/i-bookmark-outline.svg';
+  static const iBookmarkSvg = 'assets/svgs/i-bookmark.svg';
   static const iCameraSvg = 'assets/svgs/i-camera.svg';
   static const iCloseSvg = 'assets/svgs/i-close.svg';
+  static const iCommentSvg = 'assets/svgs/i-comment.svg';
   static const iCouponSvg = 'assets/svgs/i-coupon.svg';
   static const iIndicatorsSvg = 'assets/svgs/i-indicators.svg';
   static const iLikeSvg = 'assets/svgs/i-like.svg';
+  static const iMessageSvg = 'assets/svgs/i-message.svg';
   static const iNotificationsSvg = 'assets/svgs/i-notifications.svg';
   static const iSearchSvg = 'assets/svgs/i-search.svg';
   static const iStarSvg = 'assets/svgs/i-star.svg';
   static const iSubtractSvg = 'assets/svgs/i-subtract.svg';
   static const iTrashSvg = 'assets/svgs/i-trash.svg';
+  static const lineSvg = 'assets/svgs/line.svg';
   static const navCartSvg = 'assets/svgs/nav-cart.svg';
   static const navHomeSvg = 'assets/svgs/nav-home.svg';
   static const navMessageSvg = 'assets/svgs/nav-message.svg';
@@ -35,7 +40,7 @@ class AssetsSvgs {
   static const pGiftSvg = 'assets/svgs/p-gift.svg';
   static const pHomeSvg = 'assets/svgs/p-home.svg';
   static const pNotificationsSvg = 'assets/svgs/p-notifications.svg';
-  static const pTranslateSvg = 'assets/svgs/p-translate.svg';  
-  static const lineSvg = 'assets/svgs/line.svg';
   static const pThemeSvg = 'assets/svgs/p-theme.svg';
+  static const pTranslateSvg = 'assets/svgs/p-translate.svg';
+  static const profileHeaderBackgroundSvg = 'assets/svgs/profile-header-background.svg';
 }

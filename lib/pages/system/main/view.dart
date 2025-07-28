@@ -52,7 +52,11 @@ class _MainViewGetX extends GetView<MainController> {
         resizeToAvoidBottomInset: false,
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            Get.toNamed(RouteNames.postPostItem);
+            if (!UserService.to.isLogin) {
+              Get.toNamed(RouteNames.systemLogin);
+            } else {
+              Get.toNamed(RouteNames.postPostItem);
+            }
           },
           child: Icon(Icons.add),
         ),

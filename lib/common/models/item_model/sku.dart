@@ -1,7 +1,3 @@
-
-
-
-
 class SkuModel {
   int id;
   String name;
@@ -18,16 +14,6 @@ class SkuModel {
     required this.quantity,
     this.photo
   });
-
-  //factory SkuModel.fromSA(SalesAttributeModel sa) {
-  //  return SkuModel(
-  //    id: 0,
-  //    name: sa.name,
-  //    specs: {},
-  //    price: 0,
-  //    availableStock: 0,
-  //  );
-  //}
 
   factory SkuModel.fromJson(Map<String, dynamic> json) {
     return SkuModel(
@@ -48,4 +34,36 @@ class SkuModel {
     'photo': photo,
     'availableStock': quantity
   };
+}
+
+
+extension SkuModelListExtension on List<SkuModel> {
+
+  /// item 的顯示價格
+  String displayPrice() {
+    
+    // 如果一個 sku 都沒有
+    if(isEmpty) {
+      return "NTD\$0";
+    }
+    // 如果只有一個 sku
+    else if (length == 1) {
+      return "NTD\$${this[0].price.toInt().toString()}";
+    }
+    // 如果也多個 sku
+    else {
+      var prices = map((e) => e.price.toInt()).toList();
+      prices.sort();
+
+      var min = prices[0];
+      var max = prices[prices.length - 1];
+      if(min == max) {
+        return "NTD\$${min.toString()}";
+      }
+      else {
+        return "NTD\$${min.toString()}~NTD\$${max.toString()}";
+      }
+    }
+  }
+
 }

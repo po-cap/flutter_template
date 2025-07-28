@@ -31,6 +31,25 @@ class PostItemController extends GetxController {
     }
   }
 
+  _initData() {
+    skus.add(
+      SkuModel(
+        id: 0, 
+        name: "", 
+        specs: {}, 
+        price: 0, 
+        quantity: 0
+      )
+    );
+    update(["post_item"]);
+  }
+
+  @override
+  void onInit() {
+    super.onInit();
+    _initData();
+  }
+
   /// 價格
   String get price {
     
@@ -79,14 +98,16 @@ class PostItemController extends GetxController {
     update(["post_item"]);
   }
 
-  void onEditPrice() async{
-    if(skus.isEmpty) {
-      Sheet.page(
-        child: PriceEditPage()
+  void onEditPrice() async {
+    if(skus.length == 1) {
+      await Sheet.page(
+        child: PriceEditPage(
+          sku: skus[0],
+        )
       );
     }
     else {
-      Sheet.page(
+      await Sheet.page(
         child: SkuEditPage()
       );
     }
