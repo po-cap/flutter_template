@@ -5,6 +5,9 @@ import 'package:template/common/index.dart';
 class ItemDetailController extends GetxController {
   ItemDetailController();
 
+
+  List<ChatroomModel> chats = [];
+
   /// 商品(鏈結 ID)
   ItemModel item = Get.arguments['item'];
 
@@ -18,6 +21,24 @@ class ItemDetailController extends GetxController {
   }
 
   void onTap() {}
+
+  Future onChat() async {
+
+    var room = await ChatroomRepo.to.getByUri(
+      uri:'${UserService.to.profile.id}/${item.id}'
+    );
+
+    room ??= await ChatApi.getChatroom(
+      '${UserService.to.profile.id}/${item.id}'
+    );
+
+    Get.toNamed(
+      RouteNames.msgChatRoom, 
+      arguments: {
+        'chatroom': room
+      }
+    );
+  }
 
   // @override
   // void onInit() {

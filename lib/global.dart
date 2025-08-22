@@ -18,9 +18,18 @@ class Global {
     Get.put<ConfigService>(ConfigService());
     Get.put<WPHttpService>(WPHttpService());
     Get.put<UserService>(UserService());
+    Get.put<ChatService>(ChatService());
+    Get.put<LocalDataService>(LocalDataService());
+
+    // API
+    Get.lazyPut<MessageRepo>(() => MessageRepoImpl(), fenix: true);
+    Get.lazyPut<ChatroomRepo>(() => ChatroomRepoImpl(), fenix: true);
 
     // 初始化配置
     await ConfigService.to.init();
+
+    // TODO: 測試用
+    //await LocalDataService.to.delete();
   }
 }
 

@@ -27,3 +27,8 @@ https://github.com/ducafecat/flutter_package_ducafe_ui_core
 
 Statful + GetBuidlerPage 這樣做是為了，
 到別的頁面後，退回來，還可以保持狀態，比如首頁是刷到哪裡之類的
+
+{
+    "type": 5,
+    "content": "1949104296763199488/1949774713572167682"
+}

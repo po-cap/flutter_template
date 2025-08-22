@@ -1,3 +1,4 @@
 library;
 
-export 'post_image.dart';
+export 'asset_model.dart';
+export 'video_model.dart';

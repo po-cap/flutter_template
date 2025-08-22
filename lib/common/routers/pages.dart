@@ -30,6 +30,10 @@ class RoutePages {
         page: () => const ItemDetailPage(),
       ),
       GetPage(
+        name: RouteNames.msgChatRoom,
+        page: () => const ChatRoomPage(),
+      ),
+      GetPage(
         name: RouteNames.msgMsgIndex,
         page: () => const MsgIndexPage(),
       ),
@@ -41,6 +45,10 @@ class RoutePages {
         name: RouteNames.postPostItem,
         page: () => const PostItemPage(),
         binding: PostItemBinding(),
+      ),
+      GetPage(
+        name: RouteNames.postPostShort,
+        page: () => const PostShortPage(),
       ),
       GetPage(
         name: RouteNames.stylesButtons,

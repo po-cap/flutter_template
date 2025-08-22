@@ -1,18 +1,18 @@
 
 
-class PostImageRes {
+class AssetModel {
   String url;
   String name;
   double size;
 
-  PostImageRes({
+  AssetModel({
     required this.url, 
     required this.name, 
     required this.size
   });
 
-  factory PostImageRes.fromJson(Map<String, dynamic> json) {
-    return PostImageRes(
+  factory AssetModel.fromJson(Map<String, dynamic> json) {
+    return AssetModel(
       url: json['url'],
       name: json['name'],
       size: json['size']

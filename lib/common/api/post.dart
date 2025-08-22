@@ -7,10 +7,10 @@ import 'package:wechat_assets_picker/wechat_assets_picker.dart';
 class PostApi {
 
   /// 上傳照片（影片）
-  static Future<String> upload(AssetEntity asset) async {
+  static Future<String> uploadImage(AssetEntity asset) async {
 
     // 1. 壓縮照片
-    final file = await Compress.image(asset);
+    final file = await UCompress.image(asset);
   
     // 2. 獲取照片檔案名稱
     final name = file.name;
@@ -34,10 +34,57 @@ class PostApi {
     );
 
     // 5. 解析返回數據
-    final data = PostImageRes.fromJson(res.data);
+    final data = AssetModel.fromJson(res.data);
   
     // 6. 返回照片網址
     return data.url;
+  }
+
+  static Future<VideoModel> uploadVideo(AssetEntity asset) async {
+
+    // 1. 壓縮照片
+    final file = await UCompress.video(asset);
+  
+    /**********************************************************************
+      處理視頻
+    **********************************************************************/
+    // 2. 獲取照片檔案名稱
+    final videoName = file.video.name;
+
+    // 2. 讀取文件數據並轉換為 MultipartFile
+    final videoFileBytes = await file.video.readAsBytes();
+    final videoMultipartFile = MultipartFile.fromBytes(
+      videoFileBytes,
+      filename: videoName,
+    );   
+
+    /**********************************************************************
+      處理 thumbnail
+    **********************************************************************/
+    // 2. 獲取照片檔案名稱
+    final thumbnailName = file.thumbnail.name;
+
+   // 2. 讀取文件數據並轉換為 MultipartFile
+    final thumbnailFileBytes = await file.thumbnail.readAsBytes();
+    final thumbnailMultipartFile = MultipartFile.fromBytes(
+      thumbnailFileBytes,
+      filename: thumbnailName,
+    );  
+
+    // 3. 構建 FormData
+    final formData = FormData.fromMap({
+      'video': videoMultipartFile,
+      'thumbnail': thumbnailMultipartFile
+    });
+
+    // 4. 發送 POST 請求
+    final res = await WPHttpService.to.post(
+      '/api/video',
+      data: formData,
+    );
+
+    // 5. 解析返回數據
+    return VideoModel.fromJson(res.data);
   }
 
   /// 新增鏈結

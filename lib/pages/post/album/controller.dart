@@ -47,7 +47,7 @@ class AlbumController extends GetxController {
     Loading.show();
     try {
       for(final asset in result ?? []) {
-        final url = await PostApi.upload(asset);
+        final url = await PostApi.uploadImage(asset);
         album.add(url);
       }
     } finally {

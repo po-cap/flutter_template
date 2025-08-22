@@ -67,7 +67,7 @@ class SaEditController extends GetxController {
     if (result != null) {
       Loading.show();
       try {
-        final url = await PostApi.upload(result.first);
+        final url = await PostApi.uploadImage(result.first);
         option.values[valueIdx].url = url;
         update(["sa_edit"]);
       } finally {

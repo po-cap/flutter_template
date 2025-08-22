@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 import 'package:template/common/index.dart';
-import 'package:waterfall_flow/waterfall_flow.dart';
 
 import 'index.dart';
 
@@ -170,7 +169,7 @@ class _ItemDetailViewGetX extends GetView<ItemDetailController> {
 
         ButtonWidget.primary(
           "聊一聊",
-          onTap: () {},
+          onTap: controller.onChat,
         ),
       ].toRow(),
 

@@ -31,8 +31,7 @@ class HomeController extends GetxController {
     bannerItems = await SystemApi.banners();
     
     // 新商品
-    newItems = await ProductApi.getByUserId(
-      userId: 1949104296763199488,
+    newItems = await ProductApi.getNewest(
       limit: _limit
     );
     if(newItems.isNotEmpty){
@@ -49,7 +48,7 @@ class HomeController extends GetxController {
   ) async {
     
     /// 拉取数据
-    var result = await ProductApi.getByUserId(
+    var result = await ProductApi.getNewest(
       userId: 1949104296763199488,
       limit: _limit,
       lastId: _lastItemId

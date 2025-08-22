@@ -16,8 +16,15 @@ class MainController extends GetxController {
 
   /// 初始化数据
   _initData() async {
+
     // 读取用户 profile
     await UserService.to.getProfile();
+
+    // WebSocket 連線
+    if(UserService.to.isLogin) {
+      ChatService.to.onConnect();
+    }
+
     update(["main"]);
   }
 

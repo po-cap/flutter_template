@@ -12,6 +12,14 @@
         page: () => const ItemDetailPage(),
       ),
       GetPage(
+        name: RouteNames.msgChatRoom,
+        page: () => const ChatRoomPage(),
+      ),
+      GetPage(
+        name: RouteNames.msgChatRoomWidgets,
+        page: () => const WidgetsPage(),
+      ),
+      GetPage(
         name: RouteNames.msgMsgIndex,
         page: () => const MsgIndexPage(),
       ),
@@ -38,6 +46,10 @@
       GetPage(
         name: RouteNames.postPostItemWidgets,
         page: () => const WidgetsPage(),
+      ),
+      GetPage(
+        name: RouteNames.postPostShort,
+        page: () => const PostShortPage(),
       ),
       GetPage(
         name: RouteNames.postPriceEdit,

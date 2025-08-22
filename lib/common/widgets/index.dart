@@ -9,3 +9,5 @@ export 'button.dart';
 export 'input.dart';
 export 'list_tile.dart';
 export 'dialog.dart';
+export 'bubble.dart';
+export 'player.dart';

@@ -1,11 +1,19 @@
 
 class RouteNames {
+
   static const cartCartIndex = '/cart_cart_index';
+  
   static const goodsHome = '/goods_home';
   static const goodsItemDetail = '/goods_item_detail';
+  
+  static const msgChatRoom = '/msg_chat_room';
   static const msgMsgIndex = '/msg_msg_index';
+  
   static const myMyIndex = '/my_my_index';
+  
   static const postPostItem = '/post_post_item';
+  static const postPostShort = '/post_post_short';
+  
   static const stylesButtons = '/styles_buttons';
   static const stylesIcon = '/styles_icon';
   static const stylesImage = '/styles_image';

@@ -9,7 +9,6 @@ class WPHttpService extends GetxService {
   static WPHttpService get to => Get.find();
 
   late final Dio _dio;
-  // final CancelToken _cancelToken = CancelToken(); // 默认去掉
 
   @override
   void onInit() {
@@ -26,12 +25,14 @@ class WPHttpService extends GetxService {
     );
     _dio = Dio(options);
 
-    // 日誌
-    _dio.interceptors.add(LogInterceptor(
-      request: true,
-      requestHeader: true,
-      responseHeader: true, 
-    ));
+    //// 日誌
+    //_dio.interceptors.add(LogInterceptor(
+    //  request: true,
+    //  requestHeader: true,
+    //  responseHeader: true, 
+    //  requestBody: true,
+    //  responseBody: true
+    //));
 
     // 拦截器
     _dio.interceptors.add(RequestInterceptors());
@@ -154,21 +155,16 @@ class RequestInterceptors extends Interceptor {
             final response = err.response;
             final errorMessage = ErrorMessageModel.fromJson(response?.data);
             switch (errorMessage.status) {
-              // 401 未登录
               case 401:
-                // 注销 并跳转到登录页面
-                _errorNoAuth();
+                await UserApi.refreshToken();
                 break;
               case 404:
-                break;
               case 500:
-                break;
               case 502:
-                break;
               default:
+                Loading.error(errorMessage.title);
                 break;
             }
-            Loading.error(errorMessage.title);
           }
           break;
         case DioExceptionType.unknown:
@@ -186,24 +182,6 @@ class RequestInterceptors extends Interceptor {
       );
     
       handler.next(errNext);
-  }
-
-  // 退出并重新登录
-  Future<void> _errorNoAuth() async {
-    
-    try {
-      // 刷新 token
-      final token = await UserApi.refreshToken();
-      // 儲存 token
-      await UserService.to.setToken(token);
-      // 取得使用者資料
-      await UserService.to.getProfile();
-    } catch (e) {
-      // 登出
-      await UserService.to.logout();
-      // 跳转到登录
-      Get.toNamed(RouteNames.systemLogin);
-    }
   }
 }
 

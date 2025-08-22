@@ -58,10 +58,17 @@ class LoginWithLineController extends GetxController {
               // 取得使用者資料
               await UserService.to.getProfile();
       
+              // 登入成功通知
               Loading.success();
+
+              // 建立 WebSocket 連線
+              ChatService.to.onConnect();
+
+              // 返回上一頁
               for(var iter = 0; iter < 2; iter++) {
                 Get.back();
               }
+      
               return NavigationDecision.prevent;
             }
             return NavigationDecision.navigate;

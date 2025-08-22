@@ -33,7 +33,13 @@ class LoginController extends GetxController {
         // 取得使用者資料
         await UserService.to.getProfile();
 
+        // 登入成功通知
         Loading.success();
+
+        // 建立 WebSocket 連線
+        ChatService.to.onConnect();
+
+        // 返回上一頁
         Get.back(result: true);
       } finally {
         Loading.dismiss();

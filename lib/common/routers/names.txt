@@ -1,6 +1,8 @@
 static const cartCartIndex = '/cart_cart_index';
 static const goodsHome = '/goods_home';
 static const goodsItemDetail = '/goods_item_detail';
+static const msgChatRoom = '/msg_chat_room';
+static const msgChatRoomWidgets = '/msg_chat_room_widgets';
 static const msgMsgIndex = '/msg_msg_index';
 static const myMyIndex = '/my_my_index';
 static const myMyIndexWidgets = '/my_my_index_widgets';
@@ -8,6 +10,7 @@ static const postAlbum = '/post_album';
 static const postAlbumEdit = '/post_album_edit';
 static const postPostItem = '/post_post_item';
 static const postPostItemWidgets = '/post_post_item_widgets';
+static const postPostShort = '/post_post_short';
 static const postPriceEdit = '/post_price_edit';
 static const postSaEdit = '/post_sa_edit';
 static const postSkuEdit = '/post_sku_edit';

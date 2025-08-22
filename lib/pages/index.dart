@@ -8,6 +8,7 @@ export 'goods/home/index.dart';
 export 'goods/item_detail/index.dart';
 
 // 消息
+export 'msg/chat_room/index.dart';
 export 'msg/msg_index/index.dart';
 
 // 個人
@@ -18,6 +19,7 @@ export 'my/my_index/widgets/index.dart';
 export 'post/album/index.dart';
 export 'post/album_edit/index.dart';
 export 'post/post_item/index.dart';
+export 'post/post_short/index.dart';
 export 'post/post_item/widgets/index.dart';
 export 'post/price_edit/index.dart';
 export 'post/sa_edit/index.dart';

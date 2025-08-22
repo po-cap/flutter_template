@@ -21,4 +21,18 @@ class Sheet {
       },
     );
   }
+
+    /// 從底部彈出選項欄
+  static Future pop({
+    required Widget child
+  }) async {
+    await showModalBottomSheet(
+      context: Get.context!, 
+      isScrollControlled: true,
+      enableDrag: false,
+      builder:(context) {
+        return child;        
+      },
+    );
+  }
 }

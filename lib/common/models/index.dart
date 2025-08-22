@@ -9,3 +9,4 @@ export 'kv.dart';
 
 export './assets/index.dart';
 export './item_model/index.dart';
+export './message/index.dart';

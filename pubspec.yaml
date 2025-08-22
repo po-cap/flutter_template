@@ -59,6 +59,16 @@ dependencies:
   flutter_image_compress: ^2.4.0   # 圖片壓縮
   pull_to_refresh_flutter3: ^2.0.2 # 下拉刷新
   waterfall_flow: ^3.1.1           # 瀑布流
+  web_socket_channel: ^3.0.3       # WebSocket
+  sqflite: ^2.4.2                  # 資料庫
+  path: ^1.9.1                     # 路徑 (尤其是處理資料庫的路徑)
+  flutter_slidable: ^4.0.0         # 滑動刪除(給 ListTile 用的)
+  chewie: ^1.12.1                  # 影片播放器
+  video_compress: ^3.1.4           # 影片壓縮
+  mime: ^2.0.0                     # 獲取檔案類型
+  video_player: ^2.10.0            # 影片播放器
+  extended_image: ^10.0.1          # 圖片擴充功能（like cached_network_image）
+  uuid: ^4.5.1                     # uuid
 
 dev_dependencies:
   flutter_test:
@@ -100,6 +110,10 @@ flutter:
   assets:
     - assets/images/
     - assets/svgs/
+    - assets/chat/custom_face/4350/
+    - assets/chat/custom_face/4351/
+    - assets/chat/custom_face/4352/
+    - assets/chat/images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

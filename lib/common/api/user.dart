@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:get/utils.dart';
+import 'package:flutter/foundation.dart';
+import 'package:get/get.dart' hide Response, FormData, MultipartFile;
 import 'package:template/common/index.dart';
 
 class UserApi {
@@ -15,7 +16,6 @@ class UserApi {
   static Future<UserTokenModel> login(UserLoginReq req) async {
 
     try{
-
       Dio     dio;
       String? authorizeEndpoint;
       String? callbackCookie;
@@ -116,18 +116,54 @@ class UserApi {
   }
 
   // refresh token
-  static Future<UserTokenModel> refreshToken() async {
-    final response = await WPHttpService.to.post(
-      '/oauth/token',
-      options: Options(
-        contentType: 'application/x-www-form-urlencoded'
-      ),
-      data: FormData.fromMap({
-        'grant_type': 'refresh_token',
-        'client_id': 'xiao_hong_mao',
-        'refresh_token': UserService.to.refreshToken
-      })
+  static Future refreshToken() async {
+
+    // 初始 dio
+    var options = BaseOptions(
+      baseUrl: Constants.wpApiBaseUrl,
     );
-    return UserTokenModel.fromJson(response.data);
+    final dio = Dio(options);
+    
+    try {
+      
+      // data
+      final encodedData = Uri(queryParameters: {
+          'grant_type': 'refresh_token',
+          'client_id': 'xiao_hong_mao',
+          'refresh_token': UserService.to.refreshToken,
+      }).query;
+
+      // 取得 token
+      final response = await dio.post(
+        '/oauth/token',
+        data: encodedData,
+        options: Options(
+          contentType: Headers.formUrlEncodedContentType,
+        ),
+      );
+
+      // 轉換成 token object
+      final token = UserTokenModel.fromJson(response.data);
+      // 儲存 token
+      await UserService.to.setToken(token);
+      // 取得使用者資料
+      await UserService.to.getProfile();
+      // 建立 WebSocket 連線
+      ChatService.to.onConnect();
+    } on DioException catch (e) {
+
+      // TODO: 這是為了看看是啥原因導致登出的
+      debugPrint('******************************************************************');
+      debugPrint(e.toString());
+      debugPrint('statusCode is ${e.response?.statusCode}');
+      debugPrint(e.stackTrace.toString());
+      debugPrint('******************************************************************');
+
+      // 如果 token 過期，跳轉到登入頁面
+      if(e.response?.statusCode != 401) {
+        // 跳转到登录
+        Get.toNamed(RouteNames.systemLogin);
+      }
+    }
   }
 }
