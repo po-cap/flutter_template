@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
       light: AppTheme.light, // 亮色主题
       dark: AppTheme.dark, // 暗色主题
       initial: ConfigService.to.themeMode, // 初始主题
-      debugShowFloatingThemeButton: true, // 显示主题按钮
+      //debugShowFloatingThemeButton: true, // 显示主题按钮
 
       builder: (theme, darkTheme) => RefreshConfiguration(
         headerBuilder: () => const ClassicHeader(), // 自定义刷新头部

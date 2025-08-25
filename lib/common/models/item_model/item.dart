@@ -1,11 +1,12 @@
 
 
-import 'package:template/common/models/item_model/seller.dart';
+import 'package:template/common/index.dart';
+
 
 class ItemModel {
   final int id;
   final String description;
-  final SellerModel seller;
+  final UserProfileModel seller;
   final List<String> album;
   final Map<String, dynamic> spec;
 
@@ -22,7 +23,7 @@ class ItemModel {
     return ItemModel(
       id: json['id'],
       description: json['description'],
-      seller: SellerModel.fromJson(json['user']),
+      seller: UserProfileModel.fromJson(json['user']),
       album: List<String>.from(json['album']),
       spec: json['spec']
     );

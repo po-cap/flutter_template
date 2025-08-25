@@ -10,6 +10,8 @@ class RouteNames {
   static const msgMsgIndex = '/msg_msg_index';
   
   static const myMyIndex = '/my_my_index';
+  static const myMyProfile = '/my_my_profile';
+  static const myMyItems = '/my_my_items';
   
   static const postPostItem = '/post_post_item';
   static const postPostShort = '/post_post_short';

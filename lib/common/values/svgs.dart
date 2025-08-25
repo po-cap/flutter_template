@@ -171,4 +171,9 @@ class AssetsSvgs {
   static const volumeUpSvg = 'assets/svgs/volume_up.svg';
   static const walletSvg = 'assets/svgs/wallet.svg';
   static const wechatOutSvg = 'assets/svgs/wechat-out.svg';
+
+  static const bagSvg = 'assets/svgs/bag.svg';
+  static const moneyBagSvg = 'assets/svgs/money-bag.svg';
+  static const reviewSvg = 'assets/svgs/review.svg';
+  static const checklistSvg = 'assets/svgs/checklist.svg';
 }

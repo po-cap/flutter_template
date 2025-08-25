@@ -14,6 +14,8 @@ export 'msg/msg_index/index.dart';
 // 個人
 export 'my/my_index/index.dart';
 export 'my/my_index/widgets/index.dart';
+export 'my/my_profile/index.dart';
+export 'my/my_items/index.dart';
 
 // 發布
 export 'post/album/index.dart';

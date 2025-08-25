@@ -42,6 +42,14 @@ class RoutePages {
         page: () => const MyIndexPage(),
       ),
       GetPage(
+        name: RouteNames.myMyItems,
+        page: () => const MyItemsPage(),
+      ),
+      GetPage(
+        name: RouteNames.myMyProfile,
+        page: () => const MyProfilePage(),
+      ),
+      GetPage(
         name: RouteNames.postPostItem,
         page: () => const PostItemPage(),
         binding: PostItemBinding(),

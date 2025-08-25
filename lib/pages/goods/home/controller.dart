@@ -47,18 +47,18 @@ class HomeController extends GetxController {
     bool isRefresh
   ) async {
     
+    /// 下拉刷新
+    if(isRefresh){
+      _lastItemId = null;
+      newItems.clear();
+    }
+
     /// 拉取数据
     var result = await ProductApi.getNewest(
       userId: 1949104296763199488,
       limit: _limit,
       lastId: _lastItemId
     );
-
-    /// 下拉刷新
-    if(isRefresh){
-      _lastItemId = null;
-      newItems.clear();
-    }
 
     /// 有数据
     if(result.isNotEmpty){
@@ -70,6 +70,8 @@ class HomeController extends GetxController {
     /// 是否空
     return result.isEmpty;
   }
+
+
 
   void onLoading() async {
     if(newItems.isNotEmpty){

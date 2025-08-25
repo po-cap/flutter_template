@@ -115,7 +115,7 @@ class _ItemDetailViewGetX extends GetView<ItemDetailController> {
 
         <Widget>[
           ImageWidget.img(
-            controller.item.seller.avatar,
+            controller.item.seller.avatar!,
             fit: BoxFit.cover,
             width: 40,
             height: 40,
@@ -123,9 +123,14 @@ class _ItemDetailViewGetX extends GetView<ItemDetailController> {
           ).paddingRight(AppSpace.listItem),
 
           TextWidget.h4(
-            controller.item.seller.diaplayName,
+            controller.item.seller.displayName!,
           ),
         ].toRow()
+        .onTap(() {
+          Get.toNamed(RouteNames.myMyProfile, arguments: {
+            'user': controller.item.seller
+          });
+        })
         .paddingBottom(AppSpace.listItem)
         .sliverToBoxAdapter(),
 

@@ -34,16 +34,17 @@ class ProductItemWidget extends StatelessWidget {
         item.description,
         maxLines: 2,
         overflow: TextOverflow.ellipsis,
-      ),
+      ).paddingHorizontal(AppSpace.titleContent),
 
-      TextWidget.body(
+      TextWidget.h4(
         item.spec['price'],
-        color: context.colors.scheme.error
-      ),
+        color: context.colors.scheme.error,
+        scale: WidgetScale.small
+      ).paddingHorizontal(AppSpace.titleContent),
 
       [
         ImageWidget.img(
-          item.seller.avatar,
+          item.seller.avatar!,
           fit: BoxFit.cover,
           width: 20,
           height: 20,
@@ -51,14 +52,14 @@ class ProductItemWidget extends StatelessWidget {
         ).paddingRight(AppSpace.listItem),
 
         TextWidget.label(
-          item.seller.diaplayName,
+          item.seller.displayName!,
           overflow: TextOverflow.ellipsis,
         ),
-      ].toRow()
+      ].toRow().paddingHorizontal(AppSpace.titleContent),
 
     ].toColumn(
       crossAxisAlignment: CrossAxisAlignment.start
-    );
+    ).paddingBottom(AppSpace.titleContent);
 
     return ws.onTap(() {
       Get.toNamed(
@@ -67,7 +68,10 @@ class ProductItemWidget extends StatelessWidget {
           'item': item
         } 
       );
-    });
+    }).card(
+      margin:  EdgeInsets.all(0),
+      elevation: AppElevation.card
+    );
   }
 
   @override

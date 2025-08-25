@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:mime/mime.dart';
 import 'package:template/common/utils/loading.dart';
@@ -125,6 +123,11 @@ class UCompress {
       thumbnail: thumbnailXFile
     );
   } 
+
+  // 清理缓存
+  static Future<bool?> cleanVideoTmp() async {
+    return await VideoCompress.deleteAllCache();
+  }
 
   /// 自動偵測 MIME 類型
   static String? _detectMimeType(String filePath) {

@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Response, FormData, MultipartFile;
 
 import '../index.dart';
@@ -25,14 +26,14 @@ class WPHttpService extends GetxService {
     );
     _dio = Dio(options);
 
-    //// 日誌
-    //_dio.interceptors.add(LogInterceptor(
-    //  request: true,
-    //  requestHeader: true,
-    //  responseHeader: true, 
-    //  requestBody: true,
-    //  responseBody: true
-    //));
+    // 日誌
+    _dio.interceptors.add(LogInterceptor(
+      request: true,
+      requestHeader: true,
+      responseHeader: true, 
+      requestBody: true,
+      responseBody: true
+    ));
 
     // 拦截器
     _dio.interceptors.add(RequestInterceptors());
@@ -153,6 +154,12 @@ class RequestInterceptors extends Interceptor {
         case DioExceptionType.badResponse:
           {
             final response = err.response;
+            
+            // TODO
+            debugPrint('**************************'); 
+            debugPrint('data = ${response?.data}'); 
+            debugPrint('**************************'); 
+
             final errorMessage = ErrorMessageModel.fromJson(response?.data);
             switch (errorMessage.status) {
               case 401:

@@ -1,6 +1,7 @@
 
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:template/common/index.dart';
 
@@ -64,12 +65,19 @@ class UserService extends GetxService {
   Future<void> setProfile(UserProfileModel profile) async {
     if (accessToken.isEmpty) return;
     _isLogin.value = true;
+    await UserApi.editProfile(profile: profile);
     _profile(profile);
     Storage().setString(Constants.storageProfile, jsonEncode(profile));
   }
 
   // 登出
   Future<void> logout() async {
+
+    // TODO 
+    debugPrint('----------------------------------------------');
+    debugPrint('登出');
+    debugPrint('----------------------------------------------');
+
     // if (_isLogin.value) await UserAPIs.logout();
     await Storage().remove(Constants.storageAccessToken);
     await Storage().remove(Constants.storageRefreshToken);

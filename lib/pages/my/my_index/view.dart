@@ -4,86 +4,207 @@ import 'package:ducafe_ui_core/ducafe_ui_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:template/common/index.dart';
-import 'package:template/pages/my/my_index/widgets/bar_item.dart';
 
 import 'index.dart';
 
 class MyIndexPage extends GetView<MyIndexController> {
   const MyIndexPage({super.key});
 
+    // 构建根据滚动状态变化的标题
+  Widget _buildAppBarTitle() {
+    return AnimatedOpacity(
+      opacity: controller.isScrolled ? 1.0 : 0.0, // 滚动时显示，展开时隐藏
+      duration: Duration(milliseconds: 300),
+      child: <Widget>[
+        ImageWidget.img(
+          "${UserService.to.profile.avatar}",
+          width: 30,
+          height: 30,
+          fit: BoxFit.cover,
+          radius: 15,
+        ),
+        TextWidget.body("${UserService.to.profile.displayName}"),
+        IconWidget.svg(
+          AssetsSvgs.settingSvg,
+          size: 30,
+        )
+
+      ].toRow(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween
+      ),
+    );
+  }
 
   // 頂部 APP 導航欄
   Widget _buildAppBar(BuildContext context) {
     return SliverAppBar(
-      // 背景色
-      backgroundColor: Colors.transparent,
-      // 固定在頂部
+      collapsedHeight: 60,
+      expandedHeight: 150,
+      backgroundColor: Get.theme.colorScheme.surface,
       pinned: true,
-      // 浮動在頂部
       floating: true,
-       // 自動彈性顯示
-      snap: true,
-      // 是否应拉伸以填充过度滚动区域。
+      snap: false,
       stretch: true,
-      // 高度
-      expandedHeight: 280,
+      
+      title: _buildAppBarTitle(),
+
       // 此小组件堆叠在工具栏和选项卡栏后面。其高度将与应用栏的整体高度相同。
       flexibleSpace: FlexibleSpaceBar(
+        collapseMode: CollapseMode.pin,
         background: <Widget>[
+          ImageWidget.img(
+            "${UserService.to.profile.avatar}",
+            width: 60,
+            height: 60,
+            fit: BoxFit.cover,
+            radius: 50,
+          ).paddingRight(AppSpace.listItem).onTap(() {
+            Get.toNamed(
+              RouteNames.myMyProfile,
+              arguments: {
+                'user': UserService.to.profile
+            });
+          }),
+          TextWidget.h3(
+            "${UserService.to.profile.displayName}",
+          ).onTap(() {
+            Get.toNamed(
+              RouteNames.myMyProfile,
+              arguments: {
+                'user': UserService.to.profile
+            });
+          }),
+          Spacer(),
+          _buildSvgButton(
+            icon: AssetsSvgs.settingSvg, 
+            label: "設置"
+          ).paddingHorizontal(AppSpace.page),
+        ]
+        .toRow()
+        .paddingHorizontal(AppSpace.card)
+        .paddingTop(AppSpace.page * 4.5),
+    ));
+  }
 
-        <Widget>[
-          <Widget>[
-            ImageWidget.img(
-              "${UserService.to.profile.avatar}",
-              width: 100,
-              height: 100,
-              fit: BoxFit.cover,
-              radius: 50,
-            ).paddingRight(AppSpace.listItem),
-            TextWidget.h2(
-              "${UserService.to.profile.displayName}",
-            ),
-          ]
-          .toRow()
-          .paddingHorizontal(AppSpace.card),
-          
-          <Widget>[
-            // 1
-            BarItemWidget(
-              title: LocaleKeys.myTabWishlist.tr,
-              svgPath: AssetsSvgs.iLikeSvg,
-            ),
-            // 2
-            BarItemWidget(
-              title: LocaleKeys.myTabFollowing.tr,
-              svgPath: AssetsSvgs.iAddFriendSvg,
-            ),
-            // 3
-            BarItemWidget(
-              title: LocaleKeys.myTabVoucher.tr,
-              svgPath: AssetsSvgs.iCouponSvg,
-            ),
-          ]                
-          .toRow(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-          )
-          .paddingSymmetric(
-            horizontal: AppSpace.card,
-            vertical: AppSpace.card * 2,
-          )
-          .card(
-            color: context.colors.scheme.surface,
-          )
-          .paddingHorizontal(AppSpace.page), 
+  Widget _buildCountButton({
+    required String label,
+    int count = 0
+  }) {
+    return <Widget>[
+      TextWidget.h4(
+        count.toString(),
+      ),
+      TextWidget.label(
+        label,
+      ),
+    ].toColumn();
+  }
 
-        ].toColumn(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly
-        ),
 
-        ].toStack(),
-      )
+  Widget _buildSvgButton({
+    required String icon,
+    required String label,
+    int count = 0,
+    Function()? onTap
+  }) {
+    return <Widget>[
+      IconWidget.svg(
+        icon,
+        size: 36,
+        badgeString: count > 0 ? count.toString() : null,        
+      ),
+      TextWidget.label(
+        label,
+      ),
+    ].toColumn(
+      mainAxisSize: MainAxisSize.min
+    ).onTap(onTap);
+  }
+
+  Widget _buildListInteraction() {
+    return <Widget>[
+      Wrap(
+        alignment: WrapAlignment.spaceBetween,
+        children: <Widget>[
+          _buildCountButton(
+            count: 3, 
+            label: "我的收藏"
+          ),
+          _buildCountButton(
+            count: 198, 
+            label: "歷史瀏覽"
+          ),
+          _buildCountButton(
+            count: 33, 
+            label: "我的關注"
+          ),
+          _buildCountButton(
+            count: 0, 
+            label: "紅包卡卷"
+          ),                             
+        ]
+      ).width(double.infinity),
+
+
+    ].toColumn(
+      crossAxisAlignment: CrossAxisAlignment.start,
+    )
+    .paddingAll(AppSpace.page * 1.2)
+    .card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+      margin: EdgeInsets.all(AppSpace.page),
+      color: Get.theme.colorScheme.surfaceContainer,
+      elevation: 2.0
     );
   }
+
+  Widget _buildListTransaction() {
+    return <Widget>[
+      TextWidget.h4("交易記錄")
+      .paddingBottom(AppSpace.listItem),
+
+      Wrap(
+        alignment: WrapAlignment.spaceBetween,
+        children: <Widget>[
+          _buildSvgButton(
+            icon: AssetsSvgs.bagSvg, 
+            label: "我的發布",
+            onTap: () {
+              Get.toNamed(RouteNames.myMyItems);
+            },
+          ),
+          _buildSvgButton(
+            icon: AssetsSvgs.moneyBagSvg, 
+            label: "我賣出的"
+          ),
+          _buildSvgButton(
+            icon: AssetsSvgs.checklistSvg, 
+            label: "我買到的"
+          ),
+          _buildSvgButton(
+            icon: AssetsSvgs.reviewSvg, 
+            label: "待評價"
+          ),                              
+        ]
+      ).width(double.infinity),
+
+
+    ].toColumn(
+      crossAxisAlignment: CrossAxisAlignment.start,
+    )
+    .paddingAll(AppSpace.page * 1.2)
+    .card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+      margin: EdgeInsets.all(AppSpace.page),
+      color: Get.theme.colorScheme.surfaceContainer,
+      elevation: 2.0
+    );
+  }
+
 
   // 列表项
   Widget _buildListItem({
@@ -91,21 +212,10 @@ class MyIndexPage extends GetView<MyIndexController> {
     required String svgPath,
     Function()? onTap,
   }) {
-    // 随机颜色
-    Color? iconColor;
-    iconColor = Colors.primaries[Random().nextInt(Colors.primaries.length)];
-
     // 列表项
     return ListTileWidget(
-      title: TextWidget.label(txtTitle),
-      leading: IconWidget.svg(
-        svgPath,
-        size: 18,
-        color: Colors.white,
-      ).paddingAll(6).decorated(
-            color: iconColor,
-            borderRadius: BorderRadius.circular(30),
-          ),
+      title: TextWidget.body(txtTitle),
+
       trailing: const <Widget>[IconWidget.icon(Icons.arrow_forward_ios)],
       onTap: onTap,
     ).height(50);
@@ -128,45 +238,41 @@ class MyIndexPage extends GetView<MyIndexController> {
         onTap: () {}
       ),
 
-      // Theme
-      _buildListItem(
-        txtTitle: LocaleKeys.myBtnTheme.tr,
-        svgPath: AssetsSvgs.pThemeSvg,
-        onTap: () => ConfigService.to.switchThemeMode(),
-      ),
-
-      // 调试工具
-      _buildListItem(
-        txtTitle: LocaleKeys.myBtnStyles.tr,
-        svgPath: AssetsSvgs.pCurrencySvg,
-        onTap: () => Get.toNamed(RouteNames.stylesStylesIndex),
-      ),
-
-    ].toColumn().card().paddingVertical(AppSpace.page);
+    ].toColumn().card()
+    .paddingHorizontal(AppSpace.page)
+    .paddingVertical(AppSpace.page);
   }
 
   // 主视图
   Widget _buildView(BuildContext context) {
-    return CustomScrollView(
-      slivers: <Widget>[
-        // 顶部 APP 导航栏
-        _buildAppBar(context),
+    return NestedScrollView(
+      controller: controller.scrollController,
+      headerSliverBuilder: (_,innerBoxIsScrolled) {
+        return [
+          // 顶部 APP 导航栏
+          _buildAppBar(context),
+        ];
+      },
+      body: <Widget>[
+        _buildListInteraction(),
+
+        _buildListTransaction(),
+
         // 按钮列表
-        _buildButtonsList(context).sliverBox,
+        _buildButtonsList(context),
 
         // 注销
         ButtonWidget.primary(
           LocaleKeys.myBtnLogout.tr,
-          // height: 60,
           onTap: () => controller.onLogout(),
         )
+        .width(double.infinity)
         .padding(
           left: AppSpace.page,
           right: AppSpace.page,
           bottom: AppSpace.listRow * 2,
-        )
-        .sliverBox,        
-      ],
+        ),        
+      ].toColumn(),
     );
   }
 
@@ -177,9 +283,8 @@ class MyIndexPage extends GetView<MyIndexController> {
       id: "my_index",
       builder: (_) {
         return Scaffold(
-          body: SafeArea(
-            child: _buildView(context),
-          ),
+          backgroundColor: Get.theme.colorScheme.surface,
+          body: _buildView(context),
         );
       },
     );

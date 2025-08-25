@@ -32,6 +32,18 @@
         page: () => const WidgetsPage(),
       ),
       GetPage(
+        name: RouteNames.myMyItems,
+        page: () => const MyItemsPage(),
+      ),
+      GetPage(
+        name: RouteNames.myMyProfile,
+        page: () => const MyProfilePage(),
+      ),
+      GetPage(
+        name: RouteNames.myMyProfileWidgets,
+        page: () => const WidgetsPage(),
+      ),
+      GetPage(
         name: RouteNames.postAlbum,
         page: () => const AlbumPage(),
       ),
@@ -50,6 +62,10 @@
       GetPage(
         name: RouteNames.postPostShort,
         page: () => const PostShortPage(),
+      ),
+      GetPage(
+        name: RouteNames.postPostShortWidgets,
+        page: () => const WidgetsPage(),
       ),
       GetPage(
         name: RouteNames.postPriceEdit,

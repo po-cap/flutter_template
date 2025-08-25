@@ -5,10 +5,31 @@ import 'package:template/common/index.dart';
 
 class UserApi {
 
+  static Future<UserProfileModel> getOtherUserProfile(int id) {
+    return WPHttpService.to.get(
+      '/api/profile/$id'
+    ).then((res) => UserProfileModel.fromJson(res.data));
+  }
+
   // get - 用戶資訊
   static Future<UserProfileModel> profile() async {
     var res = await WPHttpService.to.get(
       '/oauth/information',
+    );
+    return UserProfileModel.fromJson(res.data);
+  }
+
+  static Future<UserProfileModel> editProfile({
+    required UserProfileModel profile
+  }) async {
+
+    var res = await WPHttpService.to.put(
+      '/api/profile',
+      data: {
+        'displayName': profile.displayName,
+        'avatar': profile.avatar,
+        'banner': profile.banner
+      }
     );
     return UserProfileModel.fromJson(res.data);
   }
