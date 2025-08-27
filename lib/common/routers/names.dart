@@ -12,6 +12,10 @@ class RouteNames {
   static const myMyIndex = '/my_my_index';
   static const myMyProfile = '/my_my_profile';
   static const myMyItems = '/my_my_items';
+  static const myMyAddress = '/my_my_address';
+  static const myMyAddresses = '/my_my_addresses';
+  static const myMyAddAddress = '/my_my_add_address';
+  static const myMyEditAddress = '/my_my_edit_address';
   
   static const postPostItem = '/post_post_item';
   static const postPostShort = '/post_post_short';

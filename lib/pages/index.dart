@@ -16,6 +16,10 @@ export 'my/my_index/index.dart';
 export 'my/my_index/widgets/index.dart';
 export 'my/my_profile/index.dart';
 export 'my/my_items/index.dart';
+export 'my/my_address/index.dart';
+export 'my/my_edit_address/index.dart';
+export 'my/my_add_address/index.dart';
+export 'my/my_addresses/index.dart';
 
 // 發布
 export 'post/album/index.dart';

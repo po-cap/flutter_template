@@ -19,6 +19,10 @@ class MyIndexController extends GetxController {
 
   void onTap() {}
 
+  void onEditAddress() {
+    Get.toNamed(RouteNames.myMyAddresses);
+  }
+
   @override
   void onInit() {
     super.onInit();

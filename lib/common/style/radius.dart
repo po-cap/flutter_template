@@ -17,4 +17,7 @@ class AppRadius {
 
   /// 图片圆角
   static double get image => 6;
+
+  /// 圆角 button 用
+  static double get stadium => 20;
 }

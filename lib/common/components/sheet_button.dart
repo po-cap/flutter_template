@@ -7,6 +7,9 @@ import 'package:template/common/index.dart';
 /// 使用場景：設定銷售屬性，付款等頁面，確認按鈕需要在底部持續出現
 class SheetButtonWidget extends StatelessWidget {
 
+  /// 返回按鈕事件s
+  final Function()? onBackTap;
+
   /// 按鈕事件
   final Function()? onTap;
   
@@ -20,7 +23,8 @@ class SheetButtonWidget extends StatelessWidget {
     super.key,
     required this.onTap,
     required this.text,
-    this.withBackNav = false
+    this.withBackNav = false,
+    this.onBackTap
   });
 
   
@@ -29,7 +33,10 @@ class SheetButtonWidget extends StatelessWidget {
       if(withBackNav)
       ButtonWidget.secondary(
         "上一步",
-        onTap: Get.back,
+        onTap: () {
+          onBackTap?.call();
+          Get.back();
+        },
       )
       .paddingRight(AppSpace.listRow)
       .flexible(

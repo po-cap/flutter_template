@@ -176,4 +176,7 @@ class AssetsSvgs {
   static const moneyBagSvg = 'assets/svgs/money-bag.svg';
   static const reviewSvg = 'assets/svgs/review.svg';
   static const checklistSvg = 'assets/svgs/checklist.svg';
+
+  static const sevenElevenSvg = 'assets/svgs/seven-eleven.svg';
+  static const familyMartSvg = 'assets/svgs/familymart.svg';
 }

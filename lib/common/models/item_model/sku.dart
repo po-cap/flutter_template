@@ -15,6 +15,17 @@ class SkuModel {
     this.photo
   });
 
+  factory SkuModel.standard() {
+    return SkuModel(
+      id: 0, 
+      name: "", 
+      specs: {}, 
+      price: 0, 
+      quantity: 0
+    );
+  }
+
+
   factory SkuModel.fromJson(Map<String, dynamic> json) {
     return SkuModel(
       id: json['id'],

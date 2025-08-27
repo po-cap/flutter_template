@@ -7,6 +7,7 @@ import '../index.dart';
 enum ButtonWidgetVariant {
   primary,
   secondary,
+  tertiary,
   destructive,
   outline,
   ghost,
@@ -168,6 +169,30 @@ class ButtonWidget extends StatefulWidget {
   })  : _width = width,
         variant = ButtonWidgetVariant.secondary;
 
+  /// 次要
+  const ButtonWidget.tertiary(
+    this.text, {
+    super.key,
+    this.scale = WidgetScale.medium,
+    double? width,
+    this.height,
+    this.onTap,
+    this.borderRadius,
+    this.child,
+    this.backgroundColor,
+    this.icon,
+    this.borderColor,
+    this.enabled = true,
+    this.iconSpace,
+    this.loading,
+    this.textColor,
+    this.reverse,
+    this.mainAxisAlignment,
+    this.mainAxisSize,
+    this.elevation,
+  })  : _width = width,
+        variant = ButtonWidgetVariant.tertiary;
+
   // destructive 警告
   const ButtonWidget.destructive(
     this.text, {
@@ -319,8 +344,11 @@ class _ButtonWidgetState extends State<ButtonWidget> {
       case ButtonWidgetVariant.secondary:
         color = widget.textColor ?? colorScheme.onSecondary;
         break;
+      case ButtonWidgetVariant.tertiary:
+        color = widget.textColor ?? colorScheme.onTertiaryContainer;
+        break;
       case ButtonWidgetVariant.destructive:
-        color = widget.textColor ?? colorScheme.onError;
+        color = widget.textColor ?? colorScheme.onErrorContainer;
         break;
       case ButtonWidgetVariant.outline:
         color = widget.textColor ?? colorScheme.primary;
@@ -346,8 +374,11 @@ class _ButtonWidgetState extends State<ButtonWidget> {
       case ButtonWidgetVariant.secondary:
         color = colorScheme.secondary;
         break;
+      case ButtonWidgetVariant.tertiary:
+        color = widget.textColor ?? colorScheme.tertiaryContainer;
+        break;
       case ButtonWidgetVariant.destructive:
-        color = colorScheme.error;
+        color = colorScheme.errorContainer;
         break;
       case ButtonWidgetVariant.outline:
       case ButtonWidgetVariant.ghost:
@@ -371,6 +402,9 @@ class _ButtonWidgetState extends State<ButtonWidget> {
       case ButtonWidgetVariant.secondary:
         color = colorScheme.secondaryContainer.withValues(alpha: 0.1);
         break;
+      case ButtonWidgetVariant.tertiary:
+        color = widget.textColor ?? colorScheme.tertiaryContainer.withValues(alpha: 0.1);
+        break;
       case ButtonWidgetVariant.destructive:
         color = colorScheme.errorContainer.withValues(alpha: 0.1);
         break;
@@ -387,16 +421,17 @@ class _ButtonWidgetState extends State<ButtonWidget> {
   // 圆角
   BorderRadius? _borderRadius() {
     switch (widget.variant) {
-      case ButtonWidgetVariant.primary:
-      case ButtonWidgetVariant.secondary:
-      case ButtonWidgetVariant.destructive:
       case ButtonWidgetVariant.ghost:
       case ButtonWidgetVariant.link:
       case ButtonWidgetVariant.icon:
         return null;
+      case ButtonWidgetVariant.primary:
+      case ButtonWidgetVariant.secondary:
+      case ButtonWidgetVariant.tertiary:
+      case ButtonWidgetVariant.destructive:
       case ButtonWidgetVariant.outline:
         return BorderRadius.circular(
-            widget.borderRadius ?? _size(AppRadius.button));
+            widget.borderRadius ?? _size(AppRadius.stadium));
     }
   }
 
@@ -404,6 +439,7 @@ class _ButtonWidgetState extends State<ButtonWidget> {
     switch (widget.variant) {
       case ButtonWidgetVariant.primary:
       case ButtonWidgetVariant.secondary:
+      case ButtonWidgetVariant.tertiary:
       case ButtonWidgetVariant.destructive:
       case ButtonWidgetVariant.ghost:
       case ButtonWidgetVariant.link:
@@ -522,7 +558,7 @@ class _ButtonWidgetState extends State<ButtonWidget> {
             widget.variant == ButtonWidgetVariant.destructive)) {
       child = child.elevation(
         pressed ? 0 : widget.elevation ?? AppElevation.button,
-        borderRadius: BorderRadius.circular(_size(AppRadius.button)),
+        borderRadius: BorderRadius.circular(_size(AppRadius.stadium)),
         shadowColor: context.colors.shadow, // const Color(0x30000000),
       );
     }

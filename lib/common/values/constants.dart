@@ -10,8 +10,10 @@ class Constants {
   // 自定义图片表情目录
   static const customFacePath       = 'assets/chat/custom_face/';
 
+
   static const storageAccessToken   = 'access_token';
   static const storageRefreshToken  = 'refresh_token';
   static const storageProfile       = 'profile';
+  static const storageAddresses     = 'addresses';
 }
 

@@ -57,6 +57,7 @@ class _MyProfileViewGetX extends GetView<MyProfileController> {
     );
   }
 
+
     // 构建根据滚动状态变化的标题
   Widget _buildAppBarTitle(bool isScrolled) {
     return AnimatedOpacity(

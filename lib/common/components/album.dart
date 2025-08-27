@@ -143,13 +143,14 @@ class _AlbumWidgetState extends State<AlbumWidget> {
       child: Ink(
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(AppRadius.image),
-            color: Get.theme.colorScheme.surfaceContainerHigh,
+            color: Get.theme.colorScheme.tertiaryContainer,
         ),
         width: width,
         height: width,
         child: Icon(
           Icons.add,
-          color: context.theme.colorScheme.onSurface,
+          size: 36,
+          color: context.theme.colorScheme.onTertiaryContainer
         )                  
       )
     );

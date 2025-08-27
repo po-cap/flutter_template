@@ -10,3 +10,9 @@ export 'carousel.dart';
 export 'product_item.dart';
 export 'refresher.dart';
 export 'video.dart';
+
+
+export 'album.dart';
+export 'sales_attributes.dart';
+export 'bottom_sheet.dart';
+export 'price.dart';

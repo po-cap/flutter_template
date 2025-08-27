@@ -22,6 +22,7 @@ class TabSoldItemsView extends GetView<MyItemsController> {
         <Widget>[
           TextWidget.h4(
             item.description,
+            maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),
           TextWidget.body(

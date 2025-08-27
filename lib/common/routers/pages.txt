@@ -24,6 +24,30 @@
         page: () => const MsgIndexPage(),
       ),
       GetPage(
+        name: RouteNames.myMyAddAddress,
+        page: () => const MyAddAddressPage(),
+      ),
+      GetPage(
+        name: RouteNames.myMyAddress,
+        page: () => const MyAddressPage(),
+      ),
+      GetPage(
+        name: RouteNames.myMyAddressWidgets,
+        page: () => const WidgetsPage(),
+      ),
+      GetPage(
+        name: RouteNames.myMyAddresses,
+        page: () => const MyAddressesPage(),
+      ),
+      GetPage(
+        name: RouteNames.myMyEditAddress,
+        page: () => const MyEditAddressPage(),
+      ),
+      GetPage(
+        name: RouteNames.myMyEditItem,
+        page: () => const MyEditItemPage(),
+      ),
+      GetPage(
         name: RouteNames.myMyIndex,
         page: () => const MyIndexPage(),
       ),
@@ -34,6 +58,10 @@
       GetPage(
         name: RouteNames.myMyItems,
         page: () => const MyItemsPage(),
+      ),
+      GetPage(
+        name: RouteNames.myMyItemsWidgets,
+        page: () => const WidgetsPage(),
       ),
       GetPage(
         name: RouteNames.myMyProfile,

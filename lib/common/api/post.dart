@@ -87,6 +87,35 @@ class PostApi {
     return VideoModel.fromJson(res.data);
   }
 
+  static Future add({
+    required String description,
+    required List<AssetEntity> album,
+    required List<SkuModel> skus
+  }) async {
+
+    // 上傳照片
+    final albumUrls = await Future.wait(album.map((e) => uploadImage(e)));
+
+    await WPHttpService.to.post(
+      '/api/item',
+      data: {
+        'description': description,
+        'album': albumUrls,
+        'spec': {
+          'price': skus.displayPrice()
+        },
+        'skus': skus.map((e) => {
+          'name': e.name,
+          'specs': e.specs,
+          'photo': e.photo,
+          'price': e.price,
+          'quantity': e.quantity,
+          'spec': e.specs
+        }).toList()
+      }
+    );
+  }
+
   /// 新增鏈結
   static Future<void> addItem({
     required String description,

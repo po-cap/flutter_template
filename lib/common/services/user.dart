@@ -15,6 +15,9 @@ class UserService extends GetxService {
   // 用戶的資料
   final _profile = UserProfileModel().obs;
 
+  // 用戶的地址
+  final _addresses = <AddressModel>[].obs;
+
   // Access Token
   String accessToken = '';
 
@@ -27,6 +30,9 @@ class UserService extends GetxService {
   // 用戶 profile
   UserProfileModel get profile => _profile.value;
 
+  // 用戶地址
+  List<AddressModel> get addresses => _addresses;
+
   // 用戶是否有 access token
   bool get hasToken => accessToken.isNotEmpty;
 
@@ -37,10 +43,21 @@ class UserService extends GetxService {
     accessToken  = Storage().getString(Constants.storageAccessToken);
     refreshToken = Storage().getString(Constants.storageRefreshToken);
     
+
     var profileOffline = Storage().getString(Constants.storageProfile);
     if(profileOffline.isNotEmpty) {
       _profile(UserProfileModel.fromJson(jsonDecode(profileOffline)));
     }
+
+    var addresses = Storage().getString(Constants.storageAddresses);
+    if(addresses.isNotEmpty) {
+      final addressesMap = jsonDecode(addresses);
+      for (var address in addressesMap) {
+        _addresses.add(AddressModel.fromJson(address)); 
+      }
+    }
+    
+    _isLogin.value = accessToken.isNotEmpty;
   }
 
   Future<void> setToken(UserTokenModel token) async {
@@ -48,6 +65,12 @@ class UserService extends GetxService {
     await Storage().setString(Constants.storageRefreshToken, token.refreshToken);
     accessToken  = token.accessToken;
     refreshToken = token.refreshToken;
+  }
+
+  // 設置用戶 addresses
+  Future<void> setAddresses(List<AddressModel> addresses) async {
+    if (accessToken.isEmpty) return;
+    Storage().setString(Constants.storageAddresses, jsonEncode(addresses));
   }
 
   // 獲取用戶 profile

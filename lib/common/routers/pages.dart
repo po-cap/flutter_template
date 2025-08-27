@@ -29,6 +29,7 @@ class RoutePages {
         name: RouteNames.goodsItemDetail,
         page: () => const ItemDetailPage(),
       ),
+
       GetPage(
         name: RouteNames.msgChatRoom,
         page: () => const ChatRoomPage(),
@@ -37,6 +38,8 @@ class RoutePages {
         name: RouteNames.msgMsgIndex,
         page: () => const MsgIndexPage(),
       ),
+
+
       GetPage(
         name: RouteNames.myMyIndex,
         page: () => const MyIndexPage(),
@@ -49,6 +52,24 @@ class RoutePages {
         name: RouteNames.myMyProfile,
         page: () => const MyProfilePage(),
       ),
+      GetPage(
+        name: RouteNames.myMyAddress,
+        page: () => const MyAddressPage(),
+      ),
+      GetPage(
+        name: RouteNames.myMyAddresses,
+        page: () => const MyAddressesPage(),
+      ),
+      GetPage(
+        name: RouteNames.myMyAddAddress,
+        page: () => const MyAddAddressPage(),
+      ),
+      GetPage(
+        name: RouteNames.myMyEditAddress,
+        page: () => const MyEditAddressPage(),
+      ),   
+
+
       GetPage(
         name: RouteNames.postPostItem,
         page: () => const PostItemPage(),
