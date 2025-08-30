@@ -36,7 +36,7 @@ class PostItemController extends GetxController {
       SkuModel(
         id: 0, 
         name: "", 
-        specs: {}, 
+        spec: {}, 
         price: 0, 
         quantity: 0
       )

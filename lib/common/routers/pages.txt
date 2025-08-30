@@ -1,9 +1,5 @@
 
       GetPage(
-        name: RouteNames.cartCartIndex,
-        page: () => const CartIndexPage(),
-      ),
-      GetPage(
         name: RouteNames.goodsHome,
         page: () => const HomePage(),
       ),
@@ -28,6 +24,10 @@
         page: () => const MyAddAddressPage(),
       ),
       GetPage(
+        name: RouteNames.myMyAddAddressWidgets,
+        page: () => const WidgetsPage(),
+      ),
+      GetPage(
         name: RouteNames.myMyAddress,
         page: () => const MyAddressPage(),
       ),
@@ -42,6 +42,10 @@
       GetPage(
         name: RouteNames.myMyEditAddress,
         page: () => const MyEditAddressPage(),
+      ),
+      GetPage(
+        name: RouteNames.myMyEditAddressWidgets,
+        page: () => const WidgetsPage(),
       ),
       GetPage(
         name: RouteNames.myMyEditItem,
@@ -70,6 +74,14 @@
       GetPage(
         name: RouteNames.myMyProfileWidgets,
         page: () => const WidgetsPage(),
+      ),
+      GetPage(
+        name: RouteNames.orderCartIndex,
+        page: () => const CartIndexPage(),
+      ),
+      GetPage(
+        name: RouteNames.orderOrderIndex,
+        page: () => const OrderIndexPage(),
       ),
       GetPage(
         name: RouteNames.postAlbum,

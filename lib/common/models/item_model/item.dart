@@ -9,13 +9,15 @@ class ItemModel {
   final UserProfileModel seller;
   final List<String> album;
   final Map<String, dynamic> spec;
+  final double shippingFee;
 
   ItemModel({
     required this.id, 
     required this.description, 
     required this.seller, 
     required this.album,
-    required this.spec
+    required this.spec,
+    required this.shippingFee
   });
 
 
@@ -25,7 +27,8 @@ class ItemModel {
       description: json['description'],
       seller: UserProfileModel.fromJson(json['user']),
       album: List<String>.from(json['album']),
-      spec: json['spec']
+      spec: json['spec'],
+      shippingFee: double.parse(json['shippingFee'].toString())
     );
   }
 
@@ -34,6 +37,7 @@ class ItemModel {
     'description': description,
     'user': seller.toJson(),
     'album': album,
-    'spec': spec
+    'spec': spec,
+    'shippingFee': shippingFee
   };
 }

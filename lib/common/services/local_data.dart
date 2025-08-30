@@ -9,7 +9,6 @@ import 'package:sqflite/sqflite.dart';
 class LocalDataService extends GetxService {
   static LocalDataService get to => Get.find(); 
 
-
   /// 資料庫
   Future<Database> get database async {
     final dbPath = await getDatabasesPath();

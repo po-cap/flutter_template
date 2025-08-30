@@ -1,50 +1,71 @@
 import 'dart:convert';
+import 'dart:io';
 
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// kv离线存储
 class Storage {
   // 单例写法
   static final Storage _instance = Storage._internal();
+
   factory Storage() => _instance;
-  late final SharedPreferences _prefs;
+  
+
+  late final FlutterSecureStorage _storage;
 
   Storage._internal();
 
   Future<void> init() async {
-    _prefs = await SharedPreferences.getInstance();
+    _storage = FlutterSecureStorage();
   }
 
-  Future<bool> setJson(String key, Object value) async {
-    return await _prefs.setString(key, jsonEncode(value));
+  Future setJson(String key, Object value) async {
+    await _storage.write(
+      key: key, 
+      value: jsonEncode(value),
+      aOptions: _getAndroidOptions()
+    );
   }
 
-  Future<bool> setString(String key, String value) async {
-    return await _prefs.setString(key, value);
+  Future setString(String key, String value) async {
+    await _storage.write(
+      key: key, 
+      value: value,
+      aOptions: _getAndroidOptions()
+    );
   }
 
-  Future<bool> setBool(String key, bool value) async {
-    return await _prefs.setBool(key, value);
+  Future setBool(String key, bool value) async {
+    await _storage.write(
+      key: key, 
+      value: value.toString(),
+      aOptions: _getAndroidOptions()
+    );
   }
 
-  Future<bool> setList(String key, List<String> value) async {
-    return await _prefs.setStringList(key, value);
+  Future<String> getString(String key) async {
+    final value = await _storage.read(key: key);
+    return value ?? '';
   }
 
-  String getString(String key) {
-    return _prefs.getString(key) ?? '';
+  Future<bool> getBool(String key) async {
+    final value = await _storage.read(key: key);
+    return value == 'true';
   }
 
-  bool getBool(String key) {
-    return _prefs.getBool(key) ?? false;
+  Future<Map<String, dynamic>> getJson(String key) {
+    return _storage.read(key: key).then((value) => 
+      value != null ? jsonDecode(value) : {}
+    );
   }
 
-  List<String> getList(String key) {
-    return _prefs.getStringList(key) ?? [];
+  Future remove(String key) async {
+    await _storage.delete(key: key);
   }
 
-  Future<bool> remove(String key) async {
-    return await _prefs.remove(key);
-  }
+  AndroidOptions _getAndroidOptions() => const AndroidOptions(
+    encryptedSharedPreferences: true,
+  );
 }
 

@@ -24,7 +24,7 @@ class LoginWithLinePage extends GetView<LoginWithLineController> {
       builder: (_) {
         return Scaffold(
           appBar: AppBar(
-            backgroundColor: Colors.transparent,
+            backgroundColor: Colors.white,
             elevation: 0,
           ),
           body: SafeArea(

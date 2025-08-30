@@ -22,12 +22,20 @@ class ConfigService extends GetxService {
   // 版本号
   String get version => _platform?.version ?? '-';
 
+ // 是否首次打开
+  Future<bool> get isAlreadyOpen async => await Storage().getBool(Constants.storageAlreadyOpen);
+
   // 初始化
   Future<ConfigService> init() async {
     await getPlatform();
     await initTheme();
-    initLocale();
+    await initLocale();
     return this;
+  }
+
+  // 标记已打开app
+  Future setAlreadyOpen() async {
+    await Storage().setBool(Constants.storageAlreadyOpen, true);
   }
 
   // 初始 theme
@@ -37,8 +45,8 @@ class ConfigService extends GetxService {
   }
 
   // 初始语言
-  void initLocale() {
-    var langCode = Storage().getString(Constants.storageLanguageCode);
+  Future initLocale() async {
+    var langCode = await Storage().getString(Constants.storageLanguageCode);
     if (langCode.isEmpty) return;
     var index = Translation.supportedLocales.indexWhere((element) {
       return element.languageCode == langCode;

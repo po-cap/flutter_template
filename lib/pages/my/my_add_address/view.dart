@@ -108,14 +108,13 @@ class MyAddAddressPage extends GetView<MyAddAddressController> {
       builder: (_) {
         return Scaffold(
           appBar: AppBar(
-            toolbarHeight: 35,
             title: const Text("增加收貨地址"),
             backgroundColor: Colors.transparent,
             actions: [
               ButtonWidget.tertiary(
                 "發布",
                 onTap: controller.onSubmit,
-              ).paddingHorizontal(AppSpace.page * 2)
+              ).center().paddingHorizontal(AppSpace.page * 2)
             ],
           ),
           body: SafeArea(

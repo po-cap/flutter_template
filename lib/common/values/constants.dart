@@ -7,6 +7,9 @@ class Constants {
   // 本地存储key
   static const storageLanguageCode  = 'language_code';
 
+  // 首次打开
+  static const storageAlreadyOpen = 'already_open';
+
   // 自定义图片表情目录
   static const customFacePath       = 'assets/chat/custom_face/';
 

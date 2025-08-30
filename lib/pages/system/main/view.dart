@@ -58,31 +58,23 @@ class _MainViewGetX extends GetView<MainController> {
                 child: <Widget>[
                   ButtonWidget
                   .ghost(
-                    "賣小物",
-                    scale: WidgetScale.large,
-                    onTap: () {
-                      Get.offNamed(RouteNames.postPostItem);
-                    },
-                  ).width(double.infinity),
-                  Divider(),
-                  ButtonWidget
-                  .ghost(
-                    "發文章",
-                    scale: WidgetScale.large,
-                    elevation: 2.0,
-                    onTap: () {},
-                  ).width(double.infinity),
-                  Divider(),
-                  ButtonWidget
-                  .ghost(
-                    "短影音",
+                    "發閒置",
                     scale: WidgetScale.large,
                     elevation: 2.0,
                     onTap: () {
-                      
                       Get.offNamed(RouteNames.postPostShort);
                     },
                   ).width(double.infinity),
+                  Divider(),
+                  
+                  TextWidget.h4(
+                    "取消",
+                    textAlign: TextAlign.center,
+                    color: Get.theme.colorScheme.error,
+                  ).width(double.infinity)
+                  .paddingBottom(AppSpace.page)
+                  .onTap(() => Get.back()),
+                
                 ].toColumn(
                   mainAxisSize: MainAxisSize.min,
                 ).paddingVertical(AppSpace.page * 2)

@@ -66,7 +66,7 @@ class AppTheme {
   /// 获取主题
   static ThemeData _getTheme(ColorScheme scheme) {
     return ThemeData(
-      useMaterial3: false,
+      useMaterial3: true,
       colorScheme: scheme,
       fontFamily: "NotoSansTC",
 
@@ -93,6 +93,20 @@ class AppTheme {
           fontWeight: FontWeight.w600, // 字体粗细
           height: 1.2, // 行高
         ),
+      ),
+
+      /// 新增按鈕變圓的
+      floatingActionButtonTheme: FloatingActionButtonThemeData(
+        shape: CircleBorder(), // 全局设置为圆形
+      ),
+
+      /// Bottom Sheet
+      bottomSheetTheme: BottomSheetThemeData(
+        backgroundColor: scheme.surface, // 彻底透明
+        modalBackgroundColor: scheme.surface, // 模态背景透明
+        //shape: RoundedRectangleBorder(
+        //  borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+        //),
       ),
     );
   }

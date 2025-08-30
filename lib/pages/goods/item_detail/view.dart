@@ -169,7 +169,7 @@ class _ItemDetailViewGetX extends GetView<ItemDetailController> {
       <Widget>[
         ButtonWidget.primary(
           "立即購買",
-          onTap: () {},
+          onTap: controller.onBuy,
         ).paddingRight(AppSpace.listRow),
 
         ButtonWidget.primary(

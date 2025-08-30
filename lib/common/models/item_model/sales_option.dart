@@ -54,7 +54,7 @@ extension SAValueExtension on SalesOptionModel {
       var sku = SkuModel(
         id: 0, 
         name: value.name, 
-        specs: {
+        spec: {
           name: value.name
         }, 
         photo: value.url,
@@ -75,7 +75,7 @@ extension SAValueExtension on SalesOptionModel {
         var sku = SkuModel(
           id: 0, 
           name: "${v1.name},${v2.name}", 
-          specs: {
+          spec: {
             sa.name: v1.name,
             name: v2.name
           }, 

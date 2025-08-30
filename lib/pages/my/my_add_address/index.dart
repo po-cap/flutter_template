@@ -1,4 +1,4 @@
-library my_add_address;
+library;
 
 export './controller.dart';
 export './view.dart';

@@ -14,45 +14,48 @@ class MyAddressesPage extends GetView<MyAddressesController> {
       slivers: <Widget>[
 
 
-        SliverList.builder(
-          itemBuilder: (_, index) {
-        
-            final address = UserService.to.addresses[index];
-
-            return ListTile(
-              title: TextWidget.body(
-                '${address.receiver} ${address.phone}',
-                weight: FontWeight.bold,
-              ),
-              subtitle: TextWidget.label(address.toString()),
-              leading: address.type == 'seven' ? 
-                IconWidget.svg(
-                  AssetsSvgs.sevenElevenSvg,
-                  size: 36,
-                ): 
-                address.type == 'family' ? 
+        Obx(
+          () => SliverList.builder(
+            itemBuilder: (_, index) {
+          
+              final address = UserService.to.addresses[index];
+          
+              return ListTile(
+                title: TextWidget.body(
+                  '${address.receiver} ${address.phone}',
+                  weight: FontWeight.bold,
+                ),
+                subtitle: TextWidget.label(address.toString()),
+                leading: address.type == 'seven' ? 
                   IconWidget.svg(
-                    AssetsSvgs.familyMartSvg,
+                    AssetsSvgs.sevenElevenSvg,
                     size: 36,
-                  ) : 
-                  IconWidget.svg(
-                    AssetsSvgs.pHomeSvg,
-                    size: 36,
-                  ),
-              trailing: IconButton(
-                icon: const Icon(Icons.edit),
-                onPressed: () => {},
-              ),
-            ).card()
-            .paddingBottom(AppSpace.listItem);
-          },
-          itemCount: UserService.to.addresses.length,
+                  ): 
+                  address.type == 'family' ? 
+                    IconWidget.svg(
+                      AssetsSvgs.familyMartSvg,
+                      size: 36,
+                    ) : 
+                    IconWidget.svg(
+                      AssetsSvgs.pHomeSvg,
+                      size: 36,
+                    ),
+                trailing: IconButton(
+                  icon: const Icon(Icons.edit),
+                  onPressed: () => controller.onEditAddress(address),
+                ),
+              ).card()
+              .paddingBottom(AppSpace.listItem);
+            },
+            itemCount: UserService.to.addresses.length,
+          ),
         ),
 
-        ButtonWidget.primary(
+        ButtonWidget.tertiary(
           "增加收貨地址",
           onTap: () => controller.onAddAddress(),
-        ).sliverToBoxAdapter(),
+        ).sliverToBoxAdapter()
+        .sliverPaddingTop(AppSpace.page),
 
       ]
     );

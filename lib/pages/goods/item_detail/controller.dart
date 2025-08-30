@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 import 'package:template/common/index.dart';
+import 'package:template/pages/goods/item_detail/widgets/index.dart';
 
 class ItemDetailController extends GetxController {
   ItemDetailController();
@@ -21,6 +22,13 @@ class ItemDetailController extends GetxController {
   }
 
   void onTap() {}
+
+  void onBuy() async {
+
+    await ActionBottomSheet.barModel(
+      OrderWiget(item: item)
+    );
+  }
 
   Future onChat() async {
 

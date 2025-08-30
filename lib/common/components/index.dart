@@ -16,3 +16,4 @@ export 'album.dart';
 export 'sales_attributes.dart';
 export 'bottom_sheet.dart';
 export 'price.dart';
+export 'quantity.dart';

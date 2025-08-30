@@ -17,6 +17,15 @@ class MyAddressesController extends GetxController {
   //   super.onInit();
   // }
 
+  void onEditAddress(AddressModel address) {
+    Get.toNamed(
+      RouteNames.myMyEditAddress,
+      arguments: {
+        'address': address
+      }
+    );
+  }
+
   @override
   void onReady() {
     super.onReady();

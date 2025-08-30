@@ -4,6 +4,8 @@ import 'package:template/common/components/skus.dart';
 import 'package:template/common/index.dart';
 import 'package:wechat_assets_picker/wechat_assets_picker.dart';
 
+import 'widgets/index.dart';
+
 class PostShortController extends GetxController {
   PostShortController();
 
@@ -21,6 +23,9 @@ class PostShortController extends GetxController {
 
   /// 銷售屬性
   Map<String, List<String>> salesAttributes = {};
+
+  /// 運費
+  double shippingFee = 0.0;
 
   _initData() {
 
@@ -57,6 +62,17 @@ class PostShortController extends GetxController {
           skus = val;
           update(["post_short"]);
         },
+      )
+    );
+  }
+
+  void onEditShippingFee() {
+    ActionBottomSheet.barModel(
+      ShippingFeeWidget(
+        onChanged: (val) {
+          shippingFee = val;
+          update(["post_short"]);
+        }
       )
     );
   }
@@ -104,6 +120,7 @@ class PostShortController extends GetxController {
     try{
       await PostApi.add(
         description: contentController.text,
+        shippingFee: shippingFee,
         album: assets,
         skus: skus
       );

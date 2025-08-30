@@ -40,7 +40,7 @@ class PriceEditController extends GetxController {
         SkuModel(
           id: 0, 
           name: "", 
-          specs: {}, 
+          spec: {}, 
           price: price, 
           quantity: quantity
         )

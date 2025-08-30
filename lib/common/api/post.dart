@@ -89,6 +89,7 @@ class PostApi {
 
   static Future add({
     required String description,
+    required double shippingFee,
     required List<AssetEntity> album,
     required List<SkuModel> skus
   }) async {
@@ -100,17 +101,18 @@ class PostApi {
       '/api/item',
       data: {
         'description': description,
+        'shippingFee': shippingFee,
         'album': albumUrls,
         'spec': {
           'price': skus.displayPrice()
         },
         'skus': skus.map((e) => {
           'name': e.name,
-          'specs': e.specs,
+          'specs': e.spec,
           'photo': e.photo,
           'price': e.price,
           'quantity': e.quantity,
-          'spec': e.specs
+          'spec': e.spec
         }).toList()
       }
     );
@@ -132,11 +134,11 @@ class PostApi {
         },
         'skus': skus.map((e) => {
           'name': e.name,
-          'specs': e.specs,
+          'specs': e.spec,
           'photo': e.photo,
           'price': e.price,
           'quantity': e.quantity,
-          'spec': e.specs
+          'spec': e.spec
         }).toList()
       }
     );

@@ -481,6 +481,8 @@ class _ButtonWidgetState extends State<ButtonWidget> {
         widget.text!,
         color: _textColor(),
         scale: widget.scale,
+        // TODO: 這我自己改的
+        weight: FontWeight.bold,
         textAlign: TextAlign.center,
       ));
     }

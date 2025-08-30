@@ -37,27 +37,30 @@ class UserService extends GetxService {
   bool get hasToken => accessToken.isNotEmpty;
 
   @override
-  void onInit() {
+  Future<void> onInit() async {
     super.onInit();
 
-    accessToken  = Storage().getString(Constants.storageAccessToken);
-    refreshToken = Storage().getString(Constants.storageRefreshToken);
+    // 讀取 access token 和 refresh token
+    accessToken  = await Storage().getString(Constants.storageAccessToken);
+    refreshToken = await Storage().getString(Constants.storageRefreshToken);
     
-
-    var profileOffline = Storage().getString(Constants.storageProfile);
-    if(profileOffline.isNotEmpty) {
-      _profile(UserProfileModel.fromJson(jsonDecode(profileOffline)));
-    }
-
-    var addresses = Storage().getString(Constants.storageAddresses);
-    if(addresses.isNotEmpty) {
-      final addressesMap = jsonDecode(addresses);
-      for (var address in addressesMap) {
-        _addresses.add(AddressModel.fromJson(address)); 
-      }
-    }
-    
+    // 判斷是否登入
     _isLogin.value = accessToken.isNotEmpty;
+
+    // 讀取用戶 profile
+    final profileMap = await Storage().getJson(Constants.storageProfile);
+    if(profileMap.isNotEmpty) {
+      _profile(UserProfileModel.fromJson(profileMap));
+    } else {
+      _profile(UserProfileModel());
+    }
+
+    // 讀取用戶地址
+    final addressesStr = await Storage().getString(Constants.storageAddresses);
+    if(addressesStr.isNotEmpty) {
+      final addresses = (jsonDecode(addressesStr) as List).map((e) => AddressModel.fromJson(e)).toList();
+      _addresses.addAll(addresses);
+    }
   }
 
   Future<void> setToken(UserTokenModel token) async {
@@ -70,27 +73,55 @@ class UserService extends GetxService {
   // 設置用戶 addresses
   Future<void> setAddresses(List<AddressModel> addresses) async {
     if (accessToken.isEmpty) return;
-    Storage().setString(Constants.storageAddresses, jsonEncode(addresses));
+
+    //_addresses.clear();
+    //_addresses.addAll(addresses);
+
+    Storage().setString(
+      Constants.storageAddresses, 
+      jsonEncode(addresses)
+    );
   }
 
   // 獲取用戶 profile
   Future<void> getProfile() async {
+    // 如果 access token 為空，表示尚未登入，
+    // 為登入就不能取得用戶訊息，所以，不做任何操作
     if(accessToken.isEmpty) return;
-    
-    final profile = await UserApi.profile();
-    _profile(profile);
-    _isLogin.value = true;
 
+    // 設定 obs 變數，是否登入為：登入
+    _isLogin.value = true;
+    
+    // 獲取伺服器上用戶訊息
+    final profile = await UserApi.profile();
+    
+    // 設定本地用戶訊息
+    _profile(profile);
+
+    // 儲存本地用戶訊息
     await Storage().setString(Constants.storageProfile, jsonEncode(profile));
   }
 
   // 設置用戶 profile
   Future<void> setProfile(UserProfileModel profile) async {
+    // 如果 access token 為空，表示尚未登入，
+    // 為登入就不能取得用戶訊息，所以，不做任何操作
     if (accessToken.isEmpty) return;
+
+    // 設定 obs 變數，是否登入為：登入
     _isLogin.value = true;
+
+    // 變更服務器上用戶資料
     await UserApi.editProfile(profile: profile);
+    
+    // 變更本地用戶資料
     _profile(profile);
-    Storage().setString(Constants.storageProfile, jsonEncode(profile));
+
+    // 儲存本地用戶訊息
+    Storage().setJson(
+      Constants.storageAddresses, 
+      profile
+    );
   }
 
   // 登出
@@ -101,7 +132,6 @@ class UserService extends GetxService {
     debugPrint('登出');
     debugPrint('----------------------------------------------');
 
-    // if (_isLogin.value) await UserAPIs.logout();
     await Storage().remove(Constants.storageAccessToken);
     await Storage().remove(Constants.storageRefreshToken);
     _profile(UserProfileModel());

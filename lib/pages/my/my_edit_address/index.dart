@@ -1,4 +1,5 @@
-library my_edit_address;
+library;
 
 export './controller.dart';
 export './view.dart';
+

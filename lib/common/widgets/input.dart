@@ -21,6 +21,7 @@ class InputWidget extends StatefulWidget {
     this.maxLines,
     this.hasBorder = true,
     this.autoClear = false,
+    this.textInputAction
   });
 
   /// 输入框控制器
@@ -67,6 +68,9 @@ class InputWidget extends StatefulWidget {
 
   /// 自动清空
   final bool? autoClear;
+
+  /// 键盘动作
+  final TextInputAction? textInputAction;
 
   // final FocusNode focusNode;
   // final TextStyle style;
@@ -177,6 +181,7 @@ class _InputWidgetState extends State<InputWidget> {
           focusNode.unfocus();
         }
       },
+      textInputAction: widget.textInputAction,
       keyboardType: widget.keyboardType,
       autofocus: widget.autofocus ?? false,
       minLines: widget.minLines ?? 1,

@@ -59,7 +59,7 @@ extension NodeExtension on Node {
     return SkuModel(
       id: 0, 
       name: value, 
-      specs: specs, 
+      spec: specs, 
       photo: '', 
       price: 0, 
       quantity: 0

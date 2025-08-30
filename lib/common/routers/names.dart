@@ -2,6 +2,7 @@
 class RouteNames {
 
   static const cartCartIndex = '/cart_cart_index';
+  static const orderOrderIndex = '/order_order_index';
   
   static const goodsHome = '/goods_home';
   static const goodsItemDetail = '/goods_item_detail';

@@ -1,7 +1,7 @@
 class SkuModel {
   int id;
   String name;
-  Map<String,String> specs;
+  Map<String,dynamic> spec;
   double price;
   String? photo;
   int quantity;
@@ -9,7 +9,7 @@ class SkuModel {
   SkuModel({
     required this.id,
     required this.name,
-    required this.specs,
+    required this.spec,
     required this.price,
     required this.quantity,
     this.photo
@@ -19,7 +19,7 @@ class SkuModel {
     return SkuModel(
       id: 0, 
       name: "", 
-      specs: {}, 
+      spec: {}, 
       price: 0, 
       quantity: 0
     );
@@ -30,20 +30,20 @@ class SkuModel {
     return SkuModel(
       id: json['id'],
       name: json['name'],
-      specs: json['specs'],
-      price: json['price'],
+      spec: json['spec'],
+      price: double.parse(json['price'].toString()), // json['price'],
       photo: json['photo'],
-      quantity: json['availableStock'],
+      quantity: json['quantity'],
     );
   }
 
   Map<String, dynamic> toJson() => {
     'id': id,
     'name': name,
-    'specs': specs,
+    'spec': spec,
     'price': price,
     'photo': photo,
-    'availableStock': quantity
+    'quantity': quantity
   };
 }
 

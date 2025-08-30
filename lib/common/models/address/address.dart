@@ -50,11 +50,11 @@ class AddressModel {
   @override
   String toString() {
     if(type == 'seven') {
-      return 'Seven店到店，$city $street $store';
+      return 'Seven店到店，$store，$zipCode $city $street';
     } else if(type == 'family') {
-      return '全家店到店，$city $street $store';
+      return '全家店到店，$store，$zipCode $city $street';
     } else {
-      return '$city $district $street';
+      return '$zipCode $city$district$street';
     }
   }
 }

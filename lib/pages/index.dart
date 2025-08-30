@@ -1,7 +1,8 @@
 library;
 
-// 購物車
-export 'cart/cart_index/index.dart';
+// 購買頁面
+export 'order/cart_index/index.dart';
+export 'order/order_index/index.dart';
 
 // 商品
 export 'goods/home/index.dart';

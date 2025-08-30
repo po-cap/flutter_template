@@ -111,7 +111,7 @@ class _PriceWidgetState extends State<PriceWidget> {
       sku = SkuModel(
         id: 0, 
         name: "", 
-        specs: {}, 
+        spec: {}, 
         photo: "", 
         price: 0, 
         quantity: 0

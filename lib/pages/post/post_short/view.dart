@@ -27,6 +27,13 @@ class PostShortPage extends GetView<PostShortController> {
           value: controller.skus.isEmpty ? "\$0.0" : controller.skus.displayPrice(),
         ),
       ),
+      GestureDetector(
+        onTap: controller.onEditShippingFee,
+        child: ActionWidget(
+          title: "運費", 
+          value: "\$${controller.shippingFee}",
+        ),
+      ),
     ].toColumn()
     .paddingTop(AppSpace.listItem);
   }
@@ -96,7 +103,9 @@ class PostShortPage extends GetView<PostShortController> {
           body: SafeArea(
             child: _buildView(),
           ),
-          bottomSheet: controller.focusNode.hasFocus ? _buildBottomAction() : null,
+          bottomSheet: controller.focusNode.hasFocus ? 
+            _buildBottomAction()
+            .backgroundColor(Get.theme.colorScheme.surface) : null,
         );
       },
     );

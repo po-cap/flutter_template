@@ -22,6 +22,11 @@ class RoutePages {
         page: () => const CartIndexPage(),
       ),
       GetPage(
+        name: RouteNames.orderOrderIndex,
+        page: () => const OrderIndexPage(),
+      ),
+      
+      GetPage(
         name: RouteNames.goodsHome,
         page: () => const HomePage(),
       ),
